@@ -1,37 +1,40 @@
-import './style.css'
-// import fisiGeoJSON from './static/fisi.geo.json'
+import './style.css';
+import './map.css';
+
 import L from 'leaflet'
-import geoJSON from './static/fisi.geo.json'
+import fisiGeoJSON from './static/fisi.geo.json'
 
 const fisiCoords = [-12.0530102, -77.0854458];
-const initialZoom = 16;
-const maxZoom = 30;
+const initialZoom = 19;
+const maxZoom = 21;
 
 const map = new L.Map('map', {
-  center: fisiCoords,
-  zoom: initialZoom,
-	minZoom: initialZoom,
   maxZoom: maxZoom,
-});
+}).fitWorld();
 
-L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-  maxZoom: maxZoom,
+const tilesProvider = (
+  `https://b.tile.thunderforest.com/transport/{z}/{x}/{y}@2x.png?apikey=${import.meta.VITE_THUNDERFORST_API_KEY}`
+);
+
+L.tileLayer(tilesProvider, {
   attribution: '© OpenStreetMap',
-  // avoid pixelation by using double resolution tiles on retina devices
-  detectRetina: true
+  maxZoom: maxZoom
 }).addTo(map);
 
-
-L.geoJSON(geoJSON, {
-  style: {
-  color: "#000",
-  opacity: 1,
-  fillColor: "#000",
-  fillOpacity: 0.8
+L.geoJSON(fisiGeoJSON, {
+    style: {
+    color: "#000",
+    opacity: 1,
+    fillColor: "#000",
+    fillOpacity: 0.8
   }
-}).addTo(map);
+})
+.addTo(map);
+
+map.setView(fisiCoords, initialZoom);
 
 // listen to zoom change
 map.on('zoomend', (e) => {
   console.log('zoom level', map.getZoom());
 });
+
