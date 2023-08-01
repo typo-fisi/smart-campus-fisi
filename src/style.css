@@ -8,13 +8,30 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
+
+  --header-height: 100px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  /* display: flex;
+  place-items: center; */
+  /* min-width: 320px; */
+  /* min-height: 100vh; */
   background-color: #4d1113;
+}
+
+header {
+  color: white;
+  max-height: var(--header-height);
+}
+
+#map {
+  height: calc(100vh - var(--header-height));
 }
