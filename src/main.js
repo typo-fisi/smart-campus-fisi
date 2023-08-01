@@ -13,7 +13,7 @@ const map = new L.Map('map', {
 }).fitWorld();
 
 const tilesProvider = (
-  `https://b.tile.thunderforest.com/transport/{z}/{x}/{y}@2x.png?apikey=${import.meta.VITE_THUNDERFORST_API_KEY}`
+  `https://b.tile.thunderforest.com/transport/{z}/{x}/{y}@2x.png?apikey=${import.meta.env.VITE_THUNDERFORST_API_KEY}`
 );
 
 L.tileLayer(tilesProvider, {
