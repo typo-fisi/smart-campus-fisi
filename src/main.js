@@ -21,15 +21,21 @@ L.tileLayer(tilesProvider, {
   maxZoom: maxZoom
 }).addTo(map);
 
-L.geoJSON(fisiGeoJSON, {
-    style: {
+const fisiLayer = L.geoJSON(fisiGeoJSON, {
+  style: {
     color: "#000",
     opacity: 1,
     fillColor: "#000",
-    fillOpacity: 0.8
+    fillOpacity: 0.8,
+    interactive: true,
+    fill: true
   }
 })
 .addTo(map);
+
+fisiLayer.on('click', (e) => {
+  alert(`click at ${e.latlng}`);
+});
 
 map.setView(fisiCoords, initialZoom);
 
