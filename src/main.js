@@ -1,6 +1,7 @@
 import mapboxgl from 'mapbox-gl';
 import { FisiMap } from './FisiMap';
-import fisiGeoJSON from './static/level1.fisi.geo.json'
+import fisiGeoJSON from './static/fisi_base_layer.geo.json'
+import firstFloorLayerGeoJSON from './static/level1.fisi.geo.json'
 
 import 'mapbox-gl/dist/mapbox-gl.css';
 import './styles/globals.scss';
@@ -12,9 +13,13 @@ mapboxgl.accessToken = import.meta.env.VITE_MAPBOXGL_API_KEY;
 const map = new FisiMap('fisimap');
 
 map.on('load', () => {
-  map.addSource('fisi', {
+  map.addSource('fisiBaseSource', {
     type: 'geojson',
     data: fisiGeoJSON
+  });
+  map.addSource('firstFloorSource', {
+    type: 'geojson',
+    data: firstFloorLayerGeoJSON
   });
 
   const categoryToColorMap = new Map([
@@ -26,9 +31,9 @@ map.on('load', () => {
 
   // Layers spec: https://docs.mapbox.com/mapbox-gl-js/style-spec/layers/
   map.addLayer({
-    id: 'fisi',
+    id: 'fisiBaseLayer',
     type: 'fill',
-    source: 'fisi',
+    source: 'fisiBaseSource',
     layout: {},
     paint: {
       'fill-color': [
@@ -41,7 +46,23 @@ map.on('load', () => {
     }
   });
 
-  map.on('click', 'fisi', (e) => {
+  map.addLayer({
+    id: 'firstFloorLayer',
+    type: 'fill',
+    source: 'firstFloorSource',
+    layout: {},
+    paint: {
+      'fill-color': [
+        'match',
+        ['get', 'category'],
+        ...[...categoryToColorMap.entries()].flat(),
+        '#ffaabb' // default
+      ],
+      'fill-opacity': 1
+    }
+  });
+
+  map.on('click', 'firstFloorLayer', (e) => {
     console.log(e.features.length)
 
     // if (e.features

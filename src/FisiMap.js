@@ -16,6 +16,7 @@ export class FisiMap extends mapboxgl.Map {
       // styles API: https://docs.mapbox.com/api/maps/styles/
       // styles gallery: https://www.mapbox.com/gallery
       style: 'mapbox://styles/paoloose/clku5av4d001501p4agbi6cbo?optimize=true',
+      // style: 'mapbox://styles/mapbox/satellite-streets-v12?optimize=true', (satelital)
       zoom: FisiMap.INITIAL_MAP_ZOOM, // starting zoom
       maxZoom: FisiMap.MAP_MAX_ZOOM,
       center: FisiMap.FISI_COORDINATES,
