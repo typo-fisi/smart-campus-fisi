@@ -1,46 +1,22 @@
-import './style.css';
-import './map.css';
-
-import L from 'leaflet'
+import mapboxgl from 'mapbox-gl'; // or "const mapboxgl = require('mapbox-gl');"
 import fisiGeoJSON from './static/fisi.geo.json'
 
-const fisiCoords = [-12.0530102, -77.0854458];
-const initialZoom = 19;
-const maxZoom = 21;
+import './style.css';
+import './map.css';
+import 'mapbox-gl/dist/mapbox-gl.css';
 
-const map = new L.Map('map', {
-  maxZoom: maxZoom,
-}).fitWorld();
+const fisiCoords = [-77.0854458, -12.0530102];
+const initialZoom = 18;
+const maxZoom = 20;
 
-const tilesProvider = (
-  `https://b.tile.thunderforest.com/transport/{z}/{x}/{y}@2x.png?apikey=${import.meta.env.VITE_THUNDERFORST_API_KEY}`
-);
+mapboxgl.accessToken = import.meta.env.VITE_MAPBOXGL_API_KEY;
 
-L.tileLayer(tilesProvider, {
-  attribution: '© OpenStreetMap',
-  maxZoom: maxZoom
-}).addTo(map);
-
-const fisiLayer = L.geoJSON(fisiGeoJSON, {
-  style: {
-    color: "#000",
-    opacity: 1,
-    fillColor: "#000",
-    fillOpacity: 0.8,
-    interactive: true,
-    fill: true
-  }
-})
-.addTo(map);
-
-fisiLayer.on('click', (e) => {
-  alert(`click at ${e.latlng}`);
+const map = new mapboxgl.Map({
+  container: 'map', // container ID
+  style: 'mapbox://styles/mapbox/streets-v12', // style URL
+  center: fisiCoords,
+  zoom: initialZoom, // starting zoom
+  maxZoom
 });
 
-map.setView(fisiCoords, initialZoom);
-
-// listen to zoom change
-map.on('zoomend', (e) => {
-  console.log('zoom level', map.getZoom());
-});
-
+document.querySelector('.mapboxgl-ctrl-bottom-left').remove();
