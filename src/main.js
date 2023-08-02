@@ -1,22 +1,53 @@
-import mapboxgl from 'mapbox-gl'; // or "const mapboxgl = require('mapbox-gl');"
-import fisiGeoJSON from './static/fisi.geo.json'
+import mapboxgl from 'mapbox-gl';
+import { FisiMap } from './FisiMap';
+import fisiGeoJSON from './static/level1.fisi.geo.json'
 
-import './style.css';
-import './map.css';
 import 'mapbox-gl/dist/mapbox-gl.css';
-
-const fisiCoords = [-77.0854458, -12.0530102];
-const initialZoom = 18;
-const maxZoom = 20;
+import './styles/globals.scss';
+import './styles/map.scss';
+import './styles/layout.scss';
 
 mapboxgl.accessToken = import.meta.env.VITE_MAPBOXGL_API_KEY;
 
-const map = new mapboxgl.Map({
-  container: 'map', // container ID
-  style: 'mapbox://styles/mapbox/streets-v12', // style URL
-  center: fisiCoords,
-  zoom: initialZoom, // starting zoom
-  maxZoom
-});
+const map = new FisiMap('fisimap');
 
-document.querySelector('.mapboxgl-ctrl-bottom-left').remove();
+map.on('load', () => {
+  map.addSource('fisi', {
+    type: 'geojson',
+    data: fisiGeoJSON
+  });
+
+  const categoryToColorMap = new Map([
+    ['aula', '#8a8bbf'],
+    ['laboratorio', '#b0a182'],
+    ['sshh', '#8ababf'],
+    ['administrativo', '#ba998d']
+  ]);
+
+  // Layers spec: https://docs.mapbox.com/mapbox-gl-js/style-spec/layers/
+  map.addLayer({
+    id: 'fisi',
+    type: 'fill',
+    source: 'fisi',
+    layout: {},
+    paint: {
+      'fill-color': [
+        'match',
+        ['get', 'category'],
+        ...[...categoryToColorMap.entries()].flat(),
+        '#8a8bbf' // default
+      ],
+      'fill-opacity': 1
+    }
+  });
+
+  map.on('click', 'fisi', (e) => {
+    console.log(e.features.length)
+
+    // if (e.features
+    new mapboxgl.Popup()
+      .setLngLat(e.lngLat)
+      .setHTML('<h3>Hello World!</h3>')
+      .addTo(map);
+  });
+})

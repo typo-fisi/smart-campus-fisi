@@ -9,29 +9,14 @@
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
 
-  --header-height: 100px;
+  --header-height: 65px;
+  --main-color: #222027;
+  --sidepanel-width: 250px;
+  --sidepanel-color: #e2e2e2;
 }
 
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-}
-
-body {
-  margin: 0;
-  /* display: flex;
-  place-items: center; */
-  /* min-width: 320px; */
-  /* min-height: 100vh; */
-  background-color: #4d1113;
-}
-
-header {
-  color: white;
-  max-height: var(--header-height);
-}
-
-#map {
-  height: calc(100vh - var(--header-height));
 }

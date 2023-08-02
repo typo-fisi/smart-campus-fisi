@@ -1,0 +1,51 @@
+body {
+  margin: 0;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  height: var(--header-height);
+  background-color: var(--main-color);
+  color: rgb(238, 238, 247);
+
+  figure {
+    display: flex;
+    align-items: center;
+
+    img {
+      width: 200px;
+      margin-right: 0px;
+      margin-left: 20px;
+    }
+    // smart campus
+    h1 {
+      text-transform: uppercase;
+      font-weight: 200;
+      font-size: 16px;
+    }
+  }
+}
+
+main {
+  #sidepanel {
+    position: absolute;
+    width: var(--sidepanel-width);
+    flex-shrink: 0;
+    z-index: 1000;
+    height: calc(100vh - var(--header-height));
+    background-color: var(--sidepanel-color);
+    box-shadow: 0px 0px 2px 0px rgba(0,0,0,0.65);
+
+    p {
+      padding: 0 12px;
+      font-size: 12px;
+    }
+  }
+
+  #fisimap {
+    height: calc(100vh - var(--header-height));
+  }
+
+}
+
