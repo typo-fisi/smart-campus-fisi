@@ -14,6 +14,7 @@ export class FisiMap extends mapboxgl.Map {
     'fisi_base_layer.geo.json': null,
     'fisi_outer_layer.geo.json': null,
     'fisi_level1.geo.json': null,
+    'fisi_level2.geo.json': null,
   };
   /** @type {Array<Object>} */
   ambientsData = [];
@@ -117,8 +118,12 @@ export class FisiMap extends mapboxgl.Map {
    * @param {string} options.geoJSONSource
    * @param {'fill' | 'line' | 'symbol' | 'circle'} options.layerType
    * @param {mapboxgl.FillPaint | mapboxgl.LinePaint | mapboxgl.SymbolPaint | mapboxgl.CirclePaint} options.paint
+   * @param {boolean} [options.addOutline=false]
+   * @param {boolean} [options.addLabels=false]
+   * @param {boolean} [options.addClickEvent=false]
+   * @param {'visible' | 'none'} [options.visibility='visible']
    */
-  addGeoJSONLayer(layerId, { geoJSONSource, layerType, paint }) {
+  addGeoJSONLayer(layerId, { geoJSONSource, layerType, paint , addOutline = false, addLabels = false, addClickEvent = false, visibility = 'visible'}) {
     if (!this.geoJSONDataMap[geoJSONSource]) {
       throw new Error(`No geoJSON source with name ${geoJSONSource} was found`);
     }
@@ -128,9 +133,142 @@ export class FisiMap extends mapboxgl.Map {
       id: layerId,
       type: layerType,
       source: geoJSONSource,
-      paint: paint
+      paint: paint,
+      layout: {
+        visibility: visibility
+      }
+    });
+
+    if (addOutline) {
+      this.addLayer({
+        id: layerId + 'Outline',
+        type: 'line',
+        source: geoJSONSource,
+        paint: {
+          'line-color': '#000',
+          'line-width': 0.5
+        },
+        layout: {
+          visibility: visibility
+        }
+      });
+    }
+
+    if (addLabels) {
+      /* Show ambient's names */
+      this.addLayer({
+        id: layerId + 'Labels',
+        type: 'symbol',
+        source: geoJSONSource,
+        layout: {
+          'text-field': [
+            'step',
+            ['zoom'],
+            '',
+            FisiMap.MAP_MAX_ZOOM - 2,
+            ['get', 'ambient_id']
+          ],
+          'text-variable-anchor': ['center'],
+          'text-radial-offset': 0.5,
+          'text-justify': 'auto',
+          'icon-image': ['get', 'icon'], // TODO: icons?
+          'text-size': 12, // text size by zoom?
+          'visibility': visibility,
+        }
+      });
+    }
+
+    if (addClickEvent) {
+      this.on('click', layerId, (e) => {
+        const feature = e.features[0];
+        new mapboxgl.Popup()
+          .setLngLat(e.lngLat)
+          .setHTML(`<h3>${feature.properties.ambient_id}</h3>`)
+          .addTo(this);
+
+        this.flyTo({
+          center: e.lngLat,
+          zoom: 20,
+          offset: [100, 0]
+        });
+
+        console.log({data: this.ambientsData})
+        const ambient = this.ambientsData.find((ambient) => ambient.ambient_id === feature.id);
+        const information = document.getElementById('sidepanel-information');
+        const title = information.getElementsByTagName('h4')[0];
+        title.textContent = ambient.name;
+        const description = information.getElementsByTagName('p')[0];
+        description.textContent = ambient.description;
+
+        const sidepanel = document.getElementById('sidepanel');
+        sidepanel.classList.remove('hidden');
+      });
+    }
+  }
+
+  /**
+   * Adds a layer to the map that shows the ambients
+   * @param {string} layerId
+   */
+  addLayerHover(layerId) {
+    /* Styles on hover
+      https://docs.mapbox.com/mapbox-gl-js/example/hover-styles/
+    */
+    const layerMap = {
+      'fisiFirstFloorLayer': 'fisi_level1.geo.json',
+      'fisiSecondFloorLayer': 'fisi_level2.geo.json',
+    }
+    let hoveredAmbientId = null;
+    let currentlyShownAmbientId = null;
+    this.on('mousemove', layerId, (e) => {
+      if (e.features.length === 0) return;
+      document.querySelector(
+        '.mapboxgl-canvas-container.mapboxgl-interactive'
+      ).style.cursor = 'pointer';
+
+      if (hoveredAmbientId !== null) {
+        // If an ambient is currently being hovered, disable it
+        this.setFeatureState(
+          { source: layerMap[layerId], id: hoveredAmbientId  },
+          { hover: false }
+        );
+      }
+      hoveredAmbientId = e.features[0].id;
+      this.setFeatureState(
+        { source: layerMap[layerId], id: hoveredAmbientId },
+        { hover: true }
+      );
+      if (currentlyShownAmbientId !== hoveredAmbientId) {
+        currentlyShownAmbientId = hoveredAmbientId;
+      }
+    });
+
+    // When the mouse leaves the state-fill layer, update the feature state of the
+    // previously hovered feature.
+    this.on('mouseleave', layerId, () => {
+      if (hoveredAmbientId !== null) {
+        this.setFeatureState(
+          { source: layerMap[layerId], id: hoveredAmbientId },
+          { hover: false }
+        );
+      }
+      hoveredAmbientId = null;
+      document.querySelector(
+        '.mapboxgl-canvas-container.mapboxgl-interactive'
+      ).style.cursor = '';
+  });
+  }
+
+  changeVisibility(layerId, visibility) {
+    const layerIds = [layerId, layerId + 'Outline', layerId + 'Labels'];
+    layerIds.forEach((layerId) => {
+      const layer = this.getLayer(layerId);
+      if (layer) {
+        this.setLayoutProperty(layerId, 'visibility', visibility);
+      }
     });
   }
+
 
 
   // Change layer's paint property dinamically:

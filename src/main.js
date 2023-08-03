@@ -60,110 +60,78 @@ ready.then(() => {
         1,
         0.5
       ]
-    }
+    },
+    addOutline: true,
+    addLabels: true,
+    addClickEvent: true,
+    visibility: 'visible'
   });
-  const FISI_FIRST_FLOOR_LAYER_OUTLINE = 'fisiFirstFloorLayerOutline';
-  map.addGeoJSONLayer(FISI_FIRST_FLOOR_LAYER_OUTLINE, {
-    geoJSONSource: 'fisi_level1.geo.json',
-    layerType: 'line',
+  map.addLayerHover(FISI_FIRST_FLOOR_LAYER);
+
+  const FISI_SECOND_FLOOR_LAYER = 'fisiSecondFloorLayer';
+  map.addGeoJSONLayer(FISI_SECOND_FLOOR_LAYER, {
+    geoJSONSource: 'fisi_level2.geo.json',
+    layerType: 'fill',
     paint: {
-      'line-color': '#000',
-      'line-width': 0.5
-    }
-  });
-
-  /* Show ambient's names */
-  const FISI_FIRST_FLOOR_LAYER_LABELS = 'fisiFirstFloorLayerLabels';
-  map.addLayer({
-    id: FISI_FIRST_FLOOR_LAYER_LABELS,
-    type: 'symbol',
-    source: 'fisi_level1.geo.json',
-    layout: {
-      'text-field': [
-        'step',
-        ['zoom'],
-        '',
-        FisiMap.MAP_MAX_ZOOM - 2,
-        ['get', 'ambient_id']
+      'fill-color': [
+        'match',
+        ['get', 'category'],
+        ...[...categoryToColorMap.entries()].flat(),
+        '#ffaabb' // default
       ],
-      'text-variable-anchor': ['center'],
-      'text-radial-offset': 0.5,
-      'text-justify': 'auto',
-      'icon-image': ['get', 'icon'], // TODO: icons?
-      'text-size': 12, // text size by zoom?
-    }
+      'fill-opacity': [
+        'case',
+        ['boolean', ['feature-state', 'hover'], false],
+        1,
+        0.5
+      ]
+    },
+    addOutline: true,
+    addLabels: true,
+    addClickEvent: true,
+    visibility: 'none'
   });
+  map.addLayerHover(FISI_SECOND_FLOOR_LAYER);
 
-  /* Styles on hover
-     https://docs.mapbox.com/mapbox-gl-js/example/hover-styles/
-  */
-  let hoveredAmbientId = null;
-  let currentlyShownAmbientId = null;
-  map.on('mousemove', FISI_FIRST_FLOOR_LAYER, (e) => {
-    if (e.features.length === 0) return;
-    document.querySelector(
-      '.mapboxgl-canvas-container.mapboxgl-interactive'
-    ).style.cursor = 'pointer';
+  map.on('idle', () => {
+    const toggleableLayers = [
+      FISI_FIRST_FLOOR_LAYER,
+      FISI_SECOND_FLOOR_LAYER
+    ];
 
-    if (hoveredAmbientId !== null) {
-      // If an ambient is currently being hovered, disable it
-      map.setFeatureState(
-        { source: 'fisi_level1.geo.json', id: hoveredAmbientId  },
-        { hover: false }
-      );
-    }
-    hoveredAmbientId = e.features[0].id;
-    map.setFeatureState(
-      { source: 'fisi_level1.geo.json', id: hoveredAmbientId },
-      { hover: true }
-    );
-    if (currentlyShownAmbientId !== hoveredAmbientId) {
-      currentlyShownAmbientId = hoveredAmbientId;
-    }
-  });
+    // set up toggleable buttons for each layer
+    for (const layerId of toggleableLayers) {
+      if (document.getElementById(layerId)) {
+        continue;
+      }
+      const link = document.createElement('a');
+      link.id = layerId;
+      link.href = '#';
+      link.textContent = layerId;
+      link.className = 'active';
 
-  // When the mouse leaves the state-fill layer, update the feature state of the
-  // previously hovered feature.
-  map.on('mouseleave', FISI_FIRST_FLOOR_LAYER, () => {
-    if (hoveredAmbientId !== null) {
-      map.setFeatureState(
-        { source: 'fisi_level1.geo.json', id: hoveredAmbientId },
-        { hover: false }
-      );
-    }
-    hoveredAmbientId = null;
-    document.querySelector(
-      '.mapboxgl-canvas-container.mapboxgl-interactive'
-    ).style.cursor = '';
-  });
+      link.onclick = function (e) {
+        const clickedLayer = this.textContent;
+        e.preventDefault();
+        e.stopPropagation();
 
+        const visibility = map.getLayoutProperty(clickedLayer, 'visibility');
 
-  map.on('click', FISI_FIRST_FLOOR_LAYER, (e) => {
-    const feature = e.features[0];
-    new mapboxgl.Popup()
-      .setLngLat(e.lngLat)
-      .setHTML(`<h3>${feature.properties.ambient_id}</h3>`)
-      .addTo(map);
+        if (visibility === 'none') {
+          map.changeVisibility(clickedLayer, 'visible');
+          this.className = 'active';
 
-    map.flyTo({
-      center: e.lngLat,
-      zoom: 20,
-      offset: [100, 0]
-    });
-
-    console.log({data: map.ambientsData})
-    const ambient = map.ambientsData.find((ambient) => ambient.ambient_id === hoveredAmbientId);
-    const information = document.getElementById('sidepanel-information');
-    const title = information.getElementsByTagName('h4')[0];
-    title.textContent = ambient.name;
-    const description = information.getElementsByTagName('p')[0];
-    description.textContent = ambient.description;
-
-    const sidepanel = document.getElementById('sidepanel');
-    sidepanel.classList.remove('hidden');
-  });
-
-  map.on('')
+          toggleableLayers.forEach((layer) => {
+            if (layer !== clickedLayer) {
+              map.changeVisibility(layer, 'none');
+              document.getElementById(layer).className = '';
+            }
+          })};
+        };
+      const layers = document.getElementById('toggleable-layers');
+      layers.appendChild(link);
+  }
+});
 });
 
 document.getElementById('toggle-panel-btn').addEventListener('click', (e) => {
