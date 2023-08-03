@@ -59,6 +59,25 @@ export class FisiMap extends mapboxgl.Map {
     });
   }
 
+  // add method to add a source and a layer given the geoJSON path and the source ID
+  // this method shoul be asynchrnous
+
+  async addGeoJSONLayer(geoJSONPath, layerId, type, paint) {
+    this.addSource(layerId + 'Source', {
+      type: 'geojson',
+      data: geoJSONPath
+    });
+
+    // Layers spec: https://docs.mapbox.com/mapbox-gl-js/style-spec/layers/
+    this.addLayer({
+      id: layerId,
+      type: type,
+      source: layerId + 'Source',
+      paint: paint
+    });
+  }
+
+
   // Change layer's paint property dinamically:
   // https://docs.mapbox.com/mapbox-gl-js/api/map/#map#setpaintproperty
 }

@@ -13,14 +13,6 @@ mapboxgl.accessToken = import.meta.env.VITE_MAPBOXGL_API_KEY;
 const map = new FisiMap('fisimap');
 
 map.on('load', () => {
-  map.addSource('fisiBaseSource', {
-    type: 'geojson',
-    data: fisiGeoJSON
-  });
-  map.addSource('firstFloorSource', {
-    type: 'geojson',
-    data: firstFloorLayerGeoJSON
-  });
 
   const categoryToColorMap = new Map([
     ['aula', '#8a8bbf'],
@@ -29,37 +21,24 @@ map.on('load', () => {
     ['administrativo', '#ba998d']
   ]);
 
-  // Layers spec: https://docs.mapbox.com/mapbox-gl-js/style-spec/layers/
-  map.addLayer({
-    id: 'fisiBaseLayer',
-    type: 'fill',
-    source: 'fisiBaseSource',
-    layout: {},
-    paint: {
-      'fill-color': [
-        'match',
-        ['get', 'category'],
-        ...[...categoryToColorMap.entries()].flat(),
-        '#8a8bbf' // default
-      ],
-      'fill-opacity': 1
-    }
+  map.addGeoJSONLayer(fisiGeoJSON, 'fisiBaseLayer', 'fill', {
+    'fill-color': [
+      'match',
+      ['get', 'category'],
+      ...[...categoryToColorMap.entries()].flat(),
+      '#8a8bbf' // default
+    ],
+    'fill-opacity': 1
   });
 
-  map.addLayer({
-    id: 'firstFloorLayer',
-    type: 'fill',
-    source: 'firstFloorSource',
-    layout: {},
-    paint: {
-      'fill-color': [
-        'match',
-        ['get', 'category'],
-        ...[...categoryToColorMap.entries()].flat(),
-        '#ffaabb' // default
-      ],
-      'fill-opacity': 1
-    }
+  map.addGeoJSONLayer(firstFloorLayerGeoJSON, 'firstFloorLayer', 'fill', {
+    'fill-color': [
+      'match',
+      ['get', 'category'],
+      ...[...categoryToColorMap.entries()].flat(),
+      '#ffaabb' // default
+    ],
+    'fill-opacity': 1
   });
 
   map.on('click', 'firstFloorLayer', (e) => {
