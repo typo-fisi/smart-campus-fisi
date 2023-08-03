@@ -85,8 +85,8 @@ export class FisiMap extends mapboxgl.Map {
   async loadGeoJSONData() {
     // Files in static/geojson
     try {
-      // const ambientsResponse = await fetch(`${import.meta.env.VITE_AMBIENTS_API_URL}/api/ambients`);
-      const ambientsResponse = await fetch('./ambients.json');
+      const ambientsResponse = await fetch(`${import.meta.env.VITE_AMBIENTS_API_URL}/api/ambients/`);
+      // const ambientsResponse = await fetch('./ambients.json');
       this.ambientsData = await ambientsResponse.json();
     } catch (e) {
       console.log('Could not fetch ambients data!!', e);
