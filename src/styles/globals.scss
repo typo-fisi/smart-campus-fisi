@@ -11,7 +11,7 @@
 
   --header-height: 65px;
   --main-color: #222027;
-  --sidepanel-width: 250px;
+  --sidepanel-width: 380px;
   --sidepanel-color: #e2e2e2;
 }
 
@@ -19,4 +19,8 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+}
+
+button {
+  cursor: pointer;
 }

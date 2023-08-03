@@ -98,8 +98,12 @@ ready.then(() => {
      https://docs.mapbox.com/mapbox-gl-js/example/hover-styles/
   */
   let hoveredAmbientId = null;
+  let currentlyShownAmbientId = null;
   map.on('mousemove', FISI_FIRST_FLOOR_LAYER, (e) => {
     if (e.features.length === 0) return;
+    document.querySelector(
+      '.mapboxgl-canvas-container.mapboxgl-interactive'
+    ).style.cursor = 'pointer';
 
     if (hoveredAmbientId !== null) {
       // If an ambient is currently being hovered, disable it
@@ -110,9 +114,12 @@ ready.then(() => {
     }
     hoveredAmbientId = e.features[0].id;
     map.setFeatureState(
-      { source: 'fisi_level1.geo.json', id: null, id: hoveredAmbientId },
+      { source: 'fisi_level1.geo.json', id: hoveredAmbientId },
       { hover: true }
     );
+    if (currentlyShownAmbientId !== hoveredAmbientId) {
+      currentlyShownAmbientId = hoveredAmbientId;
+    }
   });
 
   // When the mouse leaves the state-fill layer, update the feature state of the
@@ -125,6 +132,9 @@ ready.then(() => {
       );
     }
     hoveredAmbientId = null;
+    document.querySelector(
+      '.mapboxgl-canvas-container.mapboxgl-interactive'
+    ).style.cursor = '';
   });
 
 
@@ -134,5 +144,29 @@ ready.then(() => {
       .setLngLat(e.lngLat)
       .setHTML(`<h3>${feature.properties.ambient_id}</h3>`)
       .addTo(map);
+
+    map.flyTo({
+      center: e.lngLat,
+      zoom: 20,
+      offset: [100, 0]
+    });
+
+    console.log({data: map.ambientsData})
+    const ambient = map.ambientsData.find((ambient) => ambient.ambient_id === hoveredAmbientId);
+    const information = document.getElementById('sidepanel-information');
+    const title = information.getElementsByTagName('h4')[0];
+    title.textContent = ambient.name;
+    const description = information.getElementsByTagName('p')[0];
+    description.textContent = ambient.description;
+
+    const sidepanel = document.getElementById('sidepanel');
+    sidepanel.classList.remove('hidden');
   });
+
+  map.on('')
 });
+
+document.getElementById('toggle-panel-btn').addEventListener('click', (e) => {
+  const sidepanel = document.getElementById('sidepanel');
+  sidepanel.classList.toggle('hidden');
+})

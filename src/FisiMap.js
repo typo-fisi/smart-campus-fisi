@@ -15,6 +15,8 @@ export class FisiMap extends mapboxgl.Map {
     'fisi_outer_layer.geo.json': null,
     'fisi_level1.geo.json': null,
   };
+  /** @type {Array<Object>} */
+  ambientsData = [];
 
   constructor(containerId) {
     // calls the mapboxgl.Map constructor
@@ -82,6 +84,14 @@ export class FisiMap extends mapboxgl.Map {
    */
   async loadGeoJSONData() {
     // Files in static/geojson
+    try {
+      // const ambientsResponse = await fetch(`${import.meta.env.VITE_AMBIENTS_API_URL}/api/ambients`);
+      const ambientsResponse = await fetch('./ambients.json');
+      this.ambientsData = await ambientsResponse.json();
+    } catch (e) {
+      console.log('Could not fetch ambients data!!', e);
+    }
+
     const dynamicImports = Object.keys(this.geoJSONDataMap).map(async (filename) => {
       const response = await fetch(`./geojson/${filename}`);
       const data = await response.json();

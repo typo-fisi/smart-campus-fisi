@@ -1,0 +1,266 @@
+[
+    {
+        "name": "Biblioteca",
+        "category": "miscelanea",
+        "ambient_id": 21,
+        "description": "Biblioteca de la facultad, está abierto la mayor parte del tiempo, tiene una buena cantidad de libros a disposición, personal apto y una zona libre de ruido con cubículos personales de estudio profundo.",
+        "gallery": [],
+        "tags": []
+    },
+    {
+        "name": "Laboratorio primer nivel",
+        "category": "laboratorio",
+        "ambient_id": 19,
+        "description": "Único laboratorio del primer nivel de la facultad, espacioso, con varias ventanas y un proyector, usualmente está cerrado.",
+        "gallery": [],
+        "tags": []
+    },
+    {
+        "name": "Salon 100",
+        "category": "salones",
+        "ambient_id": 13,
+        "description": "Salón del viejo pabellón de la facultad con aforo regular que se encuentra en el primer nivel.",
+        "gallery": [],
+        "tags": []
+    },
+    {
+        "name": "Salon 101",
+        "category": "salones",
+        "ambient_id": 12,
+        "description": "Salón del viejo pabellón de la facultad con aforo regular que se encuentra en el primer nivel.",
+        "gallery": [],
+        "tags": []
+    },
+    {
+        "name": "Salon 102",
+        "category": "salones",
+        "ambient_id": 11,
+        "description": "Salón del viejo pabellón de la facultad con aforo regular que se encuentra en el primer nivel.",
+        "gallery": [],
+        "tags": []
+    },
+    {
+        "name": "Salon 103",
+        "category": "salones",
+        "ambient_id": 10,
+        "description": "Salón del viejo pabellón de la facultad con aforo regular que se encuentra en el primer nivel.",
+        "gallery": [],
+        "tags": []
+    },
+    {
+        "name": "Salon 104",
+        "category": "salones",
+        "ambient_id": 9,
+        "description": "Salón del viejo pabellón de la facultad con aforo regular que se encuentra en el primer nivel.",
+        "gallery": [],
+        "tags": []
+    },
+    {
+        "name": "Salon 105",
+        "category": "salones",
+        "ambient_id": 18,
+        "description": "Salón del viejo pabellón de la facultad con aforo regular que se encuentra en el primer nivel.",
+        "gallery": [],
+        "tags": []
+    },
+    {
+        "name": "Salon 106",
+        "category": "salones",
+        "ambient_id": 17,
+        "description": "Salón del viejo pabellón de la facultad con aforo regular que se encuentra en el primer nivel.",
+        "gallery": [],
+        "tags": []
+    },
+    {
+        "name": "Salon 107",
+        "category": "salones",
+        "ambient_id": 16,
+        "description": "Salón del viejo pabellón de la facultad con aforo regular que se encuentra en el primer nivel.",
+        "gallery": [],
+        "tags": []
+    },
+    {
+        "name": "Salon 108",
+        "category": "salones",
+        "ambient_id": 15,
+        "description": "Salón del viejo pabellón de la facultad con aforo regular que se encuentra en el primer nivel.",
+        "gallery": [],
+        "tags": []
+    },
+    {
+        "name": "Salon 109",
+        "category": "salones",
+        "ambient_id": 14,
+        "description": "Salón del viejo pabellón de la facultad con aforo regular que se encuentra en el primer nivel.",
+        "gallery": [],
+        "tags": []
+    },
+    {
+        "name": "Unidad de economía",
+        "category": "administrativo",
+        "ambient_id": 1,
+        "description": "Esta unidad se encarga de manejar y monitorear tanto los presupuestos como el tesoro, los ingresos y egresos y otros procesos económicos de la facultad.",
+        "gallery": [],
+        "tags": []
+    },
+    {
+        "name": "DGA",
+        "category": "administrativo",
+        "ambient_id": 2,
+        "description": "Esta oficina le pertenece a la entidad de la UNMSM encargada de dirigir y conducir los procesos que integran los sistemas administrativos, servicios, economía, etc. de toda la universidad.",
+        "gallery": [],
+        "tags": []
+    },
+    {
+        "name": "CERSEU",
+        "category": "administrativo",
+        "ambient_id": 3,
+        "description": "Oficina encargada de acoplar el concepto de extensión universitaria y el de proyección social a la facultad, es decir, se encarga de promover actividades academicas extra curriculares de acceso sencillo a los estudiantes de la facultad. Aquí se pueden realizar trámites sobre cursos del propio CERSEU, inscripciones, etc.",
+        "gallery": [],
+        "tags": []
+    },
+    {
+        "name": "Departamento Académico de Ciencias de la Computación",
+        "category": "administrativo",
+        "ambient_id": 4,
+        "description": "Esta oficina le pertenece al departamento académico de ciencias de la computación. Está constituido por docentes de la facultad dedicados a áreas afines del saber y con la finalidad de estudiar, investigar y actualizar contenidos, mejorar estrategias pedagógicas y preparar sílabos por asignaturas.",
+        "gallery": [],
+        "tags": []
+    },
+    {
+        "name": "Unidad de Servicios Generales Operaciones y Mantenimiento",
+        "category": "administrativo",
+        "ambient_id": 5,
+        "description": "Esta oficina, dependiente del departamento administrativo, se encarga de la gestión de los inmuebles e infraestructura de la facultad, contrata de algunos servicios y mantenimiento de las áreas.",
+        "gallery": [],
+        "tags": []
+    },
+    {
+        "name": "Baño de primera planta n° 1",
+        "category": "sshh",
+        "ambient_id": 6,
+        "description": "Los baños son bastante limpios, espaciosos y generalmente tienen papel disponible.",
+        "gallery": [],
+        "tags": []
+    },
+    {
+        "name": "Cuarto de limpieza",
+        "category": "miscelanea",
+        "ambient_id": 7,
+        "description": "Este cuarto tiene algunos implementos de limpieza, es popular porque, mientras el comedor está cerrado por algún motivo, tiene un microondas de fácil y libre acceso.",
+        "gallery": [],
+        "tags": []
+    },
+    {
+        "name": "Auditorio",
+        "category": "miscelanea",
+        "ambient_id": 8,
+        "description": "El auditorio es donde se llevan a cabo la mayoría de eventos/presentaciones de la facultad, ya sean formales e interfacultades como de eventos internos, generalmente está cerrado cuando está en desuso.",
+        "gallery": [],
+        "tags": []
+    },
+    {
+        "name": "Salon de estudio",
+        "category": "miscelanea",
+        "ambient_id": 24,
+        "description": "Salon no siempre abierto pero de libre acceso con, aparentemente, previo pedido. Acceso a una computadora y un lugar mas o menos silencioso.",
+        "gallery": [],
+        "tags": []
+    },
+    {
+        "name": "Baño de primera planta n° 2",
+        "category": "sshh",
+        "ambient_id": 26,
+        "description": "Los baños son bastante limpios, espaciosos y generalmente tienen papel disponible.",
+        "gallery": [],
+        "tags": []
+    },
+    {
+        "name": "Salon 100",
+        "category": "salones",
+        "ambient_id": 23,
+        "description": "Salón del nuevo pabellón de la facultad con aforo regular que se encuentra en el primer nivel.",
+        "gallery": [],
+        "tags": []
+    },
+    {
+        "name": "Salon 101",
+        "category": "salones",
+        "ambient_id": 35,
+        "description": "Salón del nuevo pabellón de la facultad con aforo regular que se encuentra en el primer nivel.",
+        "gallery": [],
+        "tags": []
+    },
+    {
+        "name": "Salon 102",
+        "category": "salones",
+        "ambient_id": 34,
+        "description": "Salón del nuevo pabellón de la facultad con aforo regular que se encuentra en el primer nivel.",
+        "gallery": [],
+        "tags": []
+    },
+    {
+        "name": "Salon 103",
+        "category": "salones",
+        "ambient_id": 32,
+        "description": "Salón del nuevo pabellón de la facultad con aforo regular que se encuentra en el primer nivel.",
+        "gallery": [],
+        "tags": []
+    },
+    {
+        "name": "Salon 104",
+        "category": "salones",
+        "ambient_id": 31,
+        "description": "Salón del nuevo pabellón de la facultad con aforo regular que se encuentra en el primer nivel.",
+        "gallery": [],
+        "tags": []
+    },
+    {
+        "name": "Salon 105",
+        "category": "salones",
+        "ambient_id": 30,
+        "description": "Salón del nuevo pabellón de la facultad con aforo regular que se encuentra en el primer nivel.",
+        "gallery": [],
+        "tags": []
+    },
+    {
+        "name": "Salon 106",
+        "category": "salones",
+        "ambient_id": 29,
+        "description": "Salón del nuevo pabellón de la facultad con aforo regular que se encuentra en el primer nivel.",
+        "gallery": [],
+        "tags": []
+    },
+    {
+        "name": "Salon 107",
+        "category": "salones",
+        "ambient_id": 28,
+        "description": "Salón del nuevo pabellón de la facultad con aforo regular que se encuentra en el primer nivel.",
+        "gallery": [],
+        "tags": []
+    },
+    {
+        "name": "Salon 108",
+        "category": "salones",
+        "ambient_id": 27,
+        "description": "Salón del nuevo pabellón de la facultad con aforo regular que se encuentra en el primer nivel.",
+        "gallery": [],
+        "tags": []
+    },
+    {
+        "name": "Salon 109",
+        "category": "salones",
+        "ambient_id": 25,
+        "description": "Salón del nuevo pabellón de la facultad con aforo regular que se encuentra en el primer nivel.",
+        "gallery": [],
+        "tags": []
+    },
+    {
+        "name": "Capilla de la Fisi",
+        "category": "miscelanea",
+        "ambient_id": 25,
+        "description": "Capilla de la facultad, inaugurada el 30 de noviembre del 2022 para conmemorar su 22 aniversario.",
+        "gallery": [],
+        "tags": []
+    }
+]
