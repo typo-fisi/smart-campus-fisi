@@ -8,12 +8,13 @@ export class FisiMap extends mapboxgl.Map {
     [-77.10696407267761, -12.073808103180393], // SW (suroeste)
     [-77.06157625505902, -12.041444357181149], // NE (noreste)
   ];
-  /** @type {Array<string>} */
-  geoJSONSources = [
-    'fisi_base_layer.geo.json',
-    'fisi_outer_layer.geo.json',
-    'fisi_level1.geo.json',
-  ];
+  // This data map gets populated when loadGeoJSONData is called
+  /** @type {Object<string, Object>} */
+  geoJSONDataMap = {
+    'fisi_base_layer.geo.json': null,
+    'fisi_outer_layer.geo.json': null,
+    'fisi_level1.geo.json': null,
+  };
 
   constructor(containerId) {
     // calls the mapboxgl.Map constructor
@@ -81,9 +82,10 @@ export class FisiMap extends mapboxgl.Map {
    */
   async loadGeoJSONData() {
     // Files in static/geojson
-    const dynamicImports = this.geoJSONSources.map(async (filename) => {
+    const dynamicImports = Object.keys(this.geoJSONDataMap).map(async (filename) => {
       const response = await fetch(`./geojson/${filename}`);
       const data = await response.json();
+      this.geoJSONDataMap[filename] = data;
       // id = filename
       this.addSource(filename, {
         type: 'geojson',
@@ -103,15 +105,11 @@ export class FisiMap extends mapboxgl.Map {
    * @param {string} layerId
    * @param {Object} options
    * @param {string} options.geoJSONSource
-   * @param {string} options.layerType
+   * @param {'fill' | 'line' | 'symbol' | 'circle'} options.layerType
    * @param {mapboxgl.FillPaint | mapboxgl.LinePaint | mapboxgl.SymbolPaint | mapboxgl.CirclePaint} options.paint
    */
   addGeoJSONLayer(layerId, { geoJSONSource, layerType, paint }) {
-    if (this.geoJSONSources.length === 0) {
-      throw new Error('No geoJSON sources loaded');
-    }
-    const exist = this.geoJSONSources.some(source => source === geoJSONSource);
-    if (!exist) {
+    if (!this.geoJSONDataMap[geoJSONSource]) {
       throw new Error(`No geoJSON source with name ${geoJSONSource} was found`);
     }
 
