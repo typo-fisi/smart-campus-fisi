@@ -1,7 +1,5 @@
 import mapboxgl from 'mapbox-gl';
 import { FisiMap } from './FisiMap';
-import fisiGeoJSON from './static/fisi_base_layer.geo.json'
-import firstFloorLayerGeoJSON from './static/level1.fisi.geo.json'
 
 import 'mapbox-gl/dist/mapbox-gl.css';
 import './styles/globals.scss';
@@ -11,9 +9,12 @@ import './styles/layout.scss';
 mapboxgl.accessToken = import.meta.env.VITE_MAPBOXGL_API_KEY;
 
 const map = new FisiMap('fisimap');
+const ready = Promise.all([
+  map.waitForMapLoaded(),
+  map.loadGeoJSONData()
+]);
 
-map.on('load', () => {
-
+ready.then(() => {
   const categoryToColorMap = new Map([
     ['aula', '#8a8bbf'],
     ['laboratorio', '#b0a182'],
@@ -21,24 +22,36 @@ map.on('load', () => {
     ['administrativo', '#ba998d']
   ]);
 
-  map.addGeoJSONLayer(fisiGeoJSON, 'fisiBaseLayer', 'fill', {
-    'fill-color': [
-      'match',
-      ['get', 'category'],
-      ...[...categoryToColorMap.entries()].flat(),
-      '#8a8bbf' // default
-    ],
-    'fill-opacity': 1
+  map.addGeoJSONLayer('fisiOuterLayer', {
+    geoJSONSource: 'fisi_outer_layer.geo.json',
+    layerType: 'fill',
+    paint: {
+      'fill-color': '#000',
+      'fill-opacity': 0.2
+    }
   });
 
-  map.addGeoJSONLayer(firstFloorLayerGeoJSON, 'firstFloorLayer', 'fill', {
-    'fill-color': [
-      'match',
-      ['get', 'category'],
-      ...[...categoryToColorMap.entries()].flat(),
-      '#ffaabb' // default
-    ],
-    'fill-opacity': 1
+  map.addGeoJSONLayer('fisiBaseLayer', {
+    geoJSONSource: 'fisi_base_layer.geo.json',
+    layerType: 'fill',
+    paint: {
+      'fill-color': '#aac',
+      'fill-opacity': 1
+    }
+  });
+
+  map.addGeoJSONLayer('firstFloorLayer', {
+    geoJSONSource: 'fisi_level1.geo.json',
+    layerType: 'fill',
+    paint: {
+      'fill-color': [
+        'match',
+        ['get', 'category'],
+        ...[...categoryToColorMap.entries()].flat(),
+        '#ffaabb' // default
+      ],
+      'fill-opacity': 1
+    }
   });
 
   map.on('click', 'firstFloorLayer', (e) => {

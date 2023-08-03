@@ -7,7 +7,13 @@ export class FisiMap extends mapboxgl.Map {
   static MAP_BOUNDS = [
     [-77.10696407267761, -12.073808103180393], // SW (suroeste)
     [-77.06157625505902, -12.041444357181149], // NE (noreste)
-  ]
+  ];
+  /** @type {Array<string>} */
+  geoJSONSources = [
+    'fisi_base_layer.geo.json',
+    'fisi_outer_layer.geo.json',
+    'fisi_level1.geo.json',
+  ];
 
   constructor(containerId) {
     // calls the mapboxgl.Map constructor
@@ -16,7 +22,7 @@ export class FisiMap extends mapboxgl.Map {
       // styles API: https://docs.mapbox.com/api/maps/styles/
       // styles gallery: https://www.mapbox.com/gallery
       style: 'mapbox://styles/paoloose/clku5av4d001501p4agbi6cbo?optimize=true',
-      // style: 'mapbox://styles/mapbox/satellite-streets-v12?optimize=true', (satelital)
+      // style: 'mapbox://styles/mapbox/satellite-streets-v12?optimize=true', // (satelital)
       zoom: FisiMap.INITIAL_MAP_ZOOM, // starting zoom
       maxZoom: FisiMap.MAP_MAX_ZOOM,
       center: FisiMap.FISI_COORDINATES,
@@ -59,20 +65,61 @@ export class FisiMap extends mapboxgl.Map {
     });
   }
 
+  waitForMapLoaded() {
+    if (this.loaded()) {
+      return Promise.resolve();
+    }
+    return new Promise((resolve) => {
+      this.on('load', resolve);
+    });
+  }
+
+  /**
+   * Each GeoJSON file is loaded dynamically with an id set to its filename.geo.json
+   *
+   * e.g. `static/geojson/fisi_base_layer.geo.json` will have an id of `fisi_base_layer.geo.json`
+   */
+  async loadGeoJSONData() {
+    // Files in static/geojson
+    const dynamicImports = this.geoJSONSources.map(async (filename) => {
+      const response = await fetch(`./geojson/${filename}`);
+      const data = await response.json();
+      // id = filename
+      this.addSource(filename, {
+        type: 'geojson',
+        data
+      });
+    });
+
+    return Promise.all(dynamicImports);
+  }
+
   // add method to add a source and a layer given the geoJSON path and the source ID
   // this method shoul be asynchrnous
 
-  async addGeoJSONLayer(geoJSONPath, layerId, type, paint) {
-    this.addSource(layerId + 'Source', {
-      type: 'geojson',
-      data: geoJSONPath
-    });
+  /**
+   * Calls addSource and addLayer to a given map
+   *
+   * @param {string} layerId
+   * @param {Object} options
+   * @param {string} options.geoJSONSource
+   * @param {string} options.layerType
+   * @param {mapboxgl.FillPaint | mapboxgl.LinePaint | mapboxgl.SymbolPaint | mapboxgl.CirclePaint} options.paint
+   */
+  addGeoJSONLayer(layerId, { geoJSONSource, layerType, paint }) {
+    if (this.geoJSONSources.length === 0) {
+      throw new Error('No geoJSON sources loaded');
+    }
+    const exist = this.geoJSONSources.some(source => source === geoJSONSource);
+    if (!exist) {
+      throw new Error(`No geoJSON source with name ${geoJSONSource} was found`);
+    }
 
     // Layers spec: https://docs.mapbox.com/mapbox-gl-js/style-spec/layers/
     this.addLayer({
       id: layerId,
-      type: type,
-      source: layerId + 'Source',
+      type: layerType,
+      source: geoJSONSource,
       paint: paint
     });
   }
