@@ -11,127 +11,85 @@ mapboxgl.accessToken = import.meta.env.VITE_MAPBOXGL_API_KEY;
 const map = new FisiMap('fisimap');
 const ready = Promise.all([
   map.waitForMapLoaded(),
-  map.loadGeoJSONData()
+  map.loadGeoJSONDataToMemory()
 ]);
 
 ready.then(() => {
-  const categoryToColorMap = new Map([
-    ['aula', '#8a8bbf'],
-    ['laboratorio', '#b0a182'],
-    ['sshh', '#8ababf'],
-    ['administrativo', '#ba998d']
-  ]);
-
   // Covers the whole Fisi terrain
-  const FISI_TERRAIN_COVER_LAYER = 'fisiOuterLayer';
-  map.addGeoJSONLayer(FISI_TERRAIN_COVER_LAYER, {
-    geoJSONSource: 'fisi_outer_layer.geo.json',
-    layerType: 'fill',
+  const FISI_TERRAIN_COVER_LAYER = 'fisiBaseTerrain';
+  map.addLayer({
+    id: FISI_TERRAIN_COVER_LAYER,
+    source: 'fisi_outer_layer.geo.json',
+    type: 'fill',
     paint: {
       'fill-color': '#f8f0e8',
       'fill-opacity': 1
     }
   });
 
-  const FISI_BUILDING_BASE_LAYER = 'fisiBuildingLayerOutline';
-  map.addGeoJSONLayer(FISI_BUILDING_BASE_LAYER, {
-    geoJSONSource: 'fisi_base_layer.geo.json',
-    layerType: 'line',
+  const FISI_BUILDING_BASE_LAYER = 'fisiBuildingOutline';
+  map.addLayer({
+    id: FISI_BUILDING_BASE_LAYER,
+    source: 'fisi_base_layer.geo.json',
+    type: 'line',
     paint: {
       'line-color': '#717668',
       'line-width': 2
     }
   });
 
-  const FISI_FIRST_FLOOR_LAYER = 'fisiFirstFloorLayer';
-  map.addGeoJSONLayer(FISI_FIRST_FLOOR_LAYER, {
-    geoJSONSource: 'fisi_level1.geo.json',
-    layerType: 'fill',
-    paint: {
-      'fill-color': [
-        'match',
-        ['get', 'category'],
-        ...[...categoryToColorMap.entries()].flat(),
-        '#ffaabb' // default
-      ],
-      'fill-opacity': [
-        'case',
-        ['boolean', ['feature-state', 'hover'], false],
-        1,
-        0.5
-      ]
-    },
-    addOutline: true,
-    addLabels: true,
-    addClickEvent: true,
-    visibility: 'visible'
-  });
-  map.addLayerHover(FISI_FIRST_FLOOR_LAYER);
-
-  const FISI_SECOND_FLOOR_LAYER = 'fisiSecondFloorLayer';
-  map.addGeoJSONLayer(FISI_SECOND_FLOOR_LAYER, {
-    geoJSONSource: 'fisi_level2.geo.json',
-    layerType: 'fill',
-    paint: {
-      'fill-color': [
-        'match',
-        ['get', 'category'],
-        ...[...categoryToColorMap.entries()].flat(),
-        '#ffaabb' // default
-      ],
-      'fill-opacity': [
-        'case',
-        ['boolean', ['feature-state', 'hover'], false],
-        1,
-        0.5
-      ]
-    },
-    addOutline: true,
-    addLabels: true,
-    addClickEvent: true,
-    visibility: 'none'
-  });
-  map.addLayerHover(FISI_SECOND_FLOOR_LAYER);
-
-  map.on('idle', () => {
-    const toggleableLayers = [
-      FISI_FIRST_FLOOR_LAYER,
-      FISI_SECOND_FLOOR_LAYER
-    ];
-
-    // set up toggleable buttons for each layer
-    for (const layerId of toggleableLayers) {
-      if (document.getElementById(layerId)) {
-        continue;
-      }
-      const link = document.createElement('a');
-      link.id = layerId;
-      link.href = '#';
-      link.textContent = layerId;
-      link.className = 'active';
-
-      link.onclick = function (e) {
-        const clickedLayer = this.textContent;
-        e.preventDefault();
-        e.stopPropagation();
-
-        const visibility = map.getLayoutProperty(clickedLayer, 'visibility');
-
-        if (visibility === 'none') {
-          map.changeVisibility(clickedLayer, 'visible');
-          this.className = 'active';
-
-          toggleableLayers.forEach((layer) => {
-            if (layer !== clickedLayer) {
-              map.changeVisibility(layer, 'none');
-              document.getElementById(layer).className = '';
-            }
-          })};
-        };
-      const layers = document.getElementById('toggleable-layers');
-      layers.appendChild(link);
-  }
+  map.loadFloorLevels();
 });
+
+const buttonElement = document.createElement('div');
+buttonElement.style.height = '26px';
+const catDragDoll = document.createElement('span');
+catDragDoll.style.backgroundImage = 'url(./gato_tesla.png)';
+catDragDoll.style.backgroundSize = 'contain';
+catDragDoll.style.backgroundRepeat = 'no-repeat';
+catDragDoll.style.display = 'block';
+catDragDoll.style.width = '100%';
+catDragDoll.style.height = '25px';
+buttonElement.appendChild(catDragDoll);
+document.querySelector('.mapboxgl-ctrl-bottom-right .mapboxgl-ctrl.mapboxgl-ctrl-group').prepend(
+  buttonElement
+);
+const catDragDollClone = catDragDoll.cloneNode(true);
+catDragDollClone.style.position = 'absolute';
+catDragDollClone.style.top = '0px';
+catDragDollClone.style.left = '0px';
+catDragDollClone.style.display = 'none';
+catDragDollClone.style.width = '30px';
+catDragDollClone.style.height = '30px';
+catDragDollClone.style['z-index'] = '100000';
+document.body.appendChild(catDragDollClone);
+
+let isDraggingTesla = false;
+
+buttonElement.addEventListener('dragstart', () => {
+  console.log("dragging!!!!")
+  isDraggingTesla = true;
+
+  const handleEndDrag = () => {
+    isDraggingTesla = false;
+    buttonElement.removeEventListener('drop', handleEndDrag);
+    catDragDollClone.style.display = 'none';
+    catDragDoll.style.opacity = 1;
+  }
+
+  buttonElement.addEventListener('drop', handleEndDrag);
+});
+
+window.addEventListener('dragover', (e) => {
+  if (isDraggingTesla) {
+    e.preventDefault();
+    console.log("dragging tesla")
+    catDragDollClone.style.display = 'block';
+    catDragDoll.style.opacity = 0.01;
+    catDragDollClone.style.top = `${e.clientY}px`;
+    catDragDollClone.style.left = `${e.clientX}px`;
+    map.getCanvas().style.cursor = 'grabbing';
+  }
 });
 
 document.getElementById('toggle-panel-btn').addEventListener('click', (e) => {

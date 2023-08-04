@@ -1,4 +1,5 @@
 import mapboxgl from 'mapbox-gl';
+import { LayerGroup } from './LayerGroup';
 
 export class FisiMap extends mapboxgl.Map {
   static INITIAL_MAP_ZOOM = 18;
@@ -8,16 +9,36 @@ export class FisiMap extends mapboxgl.Map {
     [-77.10696407267761, -12.073808103180393], // SW (suroeste)
     [-77.06157625505902, -12.041444357181149], // NE (noreste)
   ];
-  // This data map gets populated when loadGeoJSONData is called
-  /** @type {Object<string, Object>} */
+  /**
+   * This data map gets populated when loadGeoJSONData is called
+   * @type {Object<string, Object>}
+   * */
   geoJSONDataMap = {
     'fisi_base_layer.geo.json': null,
     'fisi_outer_layer.geo.json': null,
     'fisi_level1.geo.json': null,
     'fisi_level2.geo.json': null,
   };
-  /** @type {Array<Object>} */
+  initialVisibleFloor = 1;
+
+  /**
+   * Cached ambients information objects from the api (See ambients.json)
+   * @type {Array<Object>}
+   * */
   ambientsData = [];
+
+  /**
+   * This contains the list of LayerGroup[] loaded by this.loadFloorLevels
+   * @type {Array<LayerGroup>}
+   * */
+  floorsLayerGroups = [];
+
+  categoryToColorMap = new Map([
+    ['aula', '#8a8bbf'],
+    ['laboratorio', '#b0a182'],
+    ['sshh', '#8ababf'],
+    ['administrativo', '#ba998d']
+  ]);
 
   constructor(containerId) {
     // calls the mapboxgl.Map constructor
@@ -82,144 +103,67 @@ export class FisiMap extends mapboxgl.Map {
    * Each GeoJSON file is loaded dynamically with an id set to its filename.geo.json
    *
    * e.g. `static/geojson/fisi_base_layer.geo.json` will have an id of `fisi_base_layer.geo.json`
+   * @returns {Promise<void[]>}
    */
-  async loadGeoJSONData() {
+  async loadGeoJSONDataToMemory() {
     // Files in static/geojson
     try {
-      const ambientsResponse = await fetch(`${import.meta.env.VITE_AMBIENTS_API_URL}/api/ambients/`);
-      // const ambientsResponse = await fetch('./ambients.json');
+      // const ambientsResponse = await fetch(`${import.meta.env.VITE_AMBIENTS_API_URL}/api/ambients/`);
+      const ambientsResponse = await fetch('./ambients.json');
       this.ambientsData = await ambientsResponse.json();
     } catch (e) {
-      console.log('Could not fetch ambients data!!', e);
+      console.error('Could not fetch ambients data!!', e);
+      window.alert('No se pudo cargar la información de los ambientes. Por favor, recargue la página');
     }
 
     const dynamicImports = Object.keys(this.geoJSONDataMap).map(async (filename) => {
       const response = await fetch(`./geojson/${filename}`);
-      const data = await response.json();
-      this.geoJSONDataMap[filename] = data;
-      // id = filename
+      const jsonData = await response.json();
+
+      // This logic is applied to all the fisi geojsons levels
+      if (filename.startsWith('fisi_level')) {
+        // Populate ambient's properties dinamically to the geojsons
+        // since they only contain an ambient_id
+        jsonData.features.forEach((feature) => {
+          const ambientIdToPopulate = feature.properties.ambient_id;
+          const properties = this.ambientsData.find((ambient) => (
+            ambientIdToPopulate === ambient.ambient_id
+          ));
+          if (!properties) {
+            // TODO: throwing this error is important, but we don't have enough data yet
+            // throw Error(
+            //   `The geoJSON file '${filename}' contains an ambient_id=${ambientIdToPopulate} that was not found in the ambients json data`
+            // );
+          }
+          feature.properties = { ...properties };
+        });
+      }
+      this.geoJSONDataMap[filename] = jsonData;
+      // the id is the filename filename
       this.addSource(filename, {
         type: 'geojson',
-        data
+        data: jsonData
       });
     });
 
     return Promise.all(dynamicImports);
   }
 
-  // add method to add a source and a layer given the geoJSON path and the source ID
-  // this method shoul be asynchrnous
-
   /**
-   * Calls addSource and addLayer to a given map
+   * Adds mouse listeners to the layer for hovering and highlighting.
+   *
+   * Call it only once for each layer created.
    *
    * @param {string} layerId
-   * @param {Object} options
-   * @param {string} options.geoJSONSource
-   * @param {'fill' | 'line' | 'symbol' | 'circle'} options.layerType
-   * @param {mapboxgl.FillPaint | mapboxgl.LinePaint | mapboxgl.SymbolPaint | mapboxgl.CirclePaint} options.paint
-   * @param {boolean} [options.addOutline=false]
-   * @param {boolean} [options.addLabels=false]
-   * @param {boolean} [options.addClickEvent=false]
-   * @param {'visible' | 'none'} [options.visibility='visible']
    */
-  addGeoJSONLayer(layerId, { geoJSONSource, layerType, paint , addOutline = false, addLabels = false, addClickEvent = false, visibility = 'visible'}) {
-    if (!this.geoJSONDataMap[geoJSONSource]) {
-      throw new Error(`No geoJSON source with name ${geoJSONSource} was found`);
-    }
-
-    // Layers spec: https://docs.mapbox.com/mapbox-gl-js/style-spec/layers/
-    this.addLayer({
-      id: layerId,
-      type: layerType,
-      source: geoJSONSource,
-      paint: paint,
-      layout: {
-        visibility: visibility
-      }
-    });
-
-    if (addOutline) {
-      this.addLayer({
-        id: layerId + 'Outline',
-        type: 'line',
-        source: geoJSONSource,
-        paint: {
-          'line-color': '#000',
-          'line-width': 0.5
-        },
-        layout: {
-          visibility: visibility
-        }
-      });
-    }
-
-    if (addLabels) {
-      /* Show ambient's names */
-      this.addLayer({
-        id: layerId + 'Labels',
-        type: 'symbol',
-        source: geoJSONSource,
-        layout: {
-          'text-field': [
-            'step',
-            ['zoom'],
-            '',
-            FisiMap.MAP_MAX_ZOOM - 2,
-            ['get', 'ambient_id']
-          ],
-          'text-variable-anchor': ['center'],
-          'text-radial-offset': 0.5,
-          'text-justify': 'auto',
-          'icon-image': ['get', 'icon'], // TODO: icons?
-          'text-size': 12, // text size by zoom?
-          'visibility': visibility,
-        }
-      });
-    }
-
-    if (addClickEvent) {
-      this.on('click', layerId, (e) => {
-        const feature = e.features[0];
-        new mapboxgl.Popup()
-          .setLngLat(e.lngLat)
-          .setHTML(`<h3>${feature.properties.ambient_id}</h3>`)
-          .addTo(this);
-
-        this.flyTo({
-          center: e.lngLat,
-          zoom: 20,
-          offset: [100, 0]
-        });
-
-        console.log({data: this.ambientsData})
-        const ambient = this.ambientsData.find((ambient) => ambient.ambient_id === feature.id);
-        const information = document.getElementById('sidepanel-information');
-        const title = information.getElementsByTagName('h4')[0];
-        title.textContent = ambient.name;
-        const description = information.getElementsByTagName('p')[0];
-        description.textContent = ambient.description;
-
-        const sidepanel = document.getElementById('sidepanel');
-        sidepanel.classList.remove('hidden');
-      });
-    }
-  }
-
-  /**
-   * Adds a layer to the map that shows the ambients
-   * @param {string} layerId
-   */
-  addLayerHover(layerId) {
+  makeLayerHoverable(layerId) {
     /* Styles on hover
       https://docs.mapbox.com/mapbox-gl-js/example/hover-styles/
     */
-    const layerMap = {
-      'fisiFirstFloorLayer': 'fisi_level1.geo.json',
-      'fisiSecondFloorLayer': 'fisi_level2.geo.json',
-    }
+    const geoJSONId = layerId.replace('.fill', '.geo.json');
     let hoveredAmbientId = null;
     let currentlyShownAmbientId = null;
+
     this.on('mousemove', layerId, (e) => {
       if (e.features.length === 0) return;
       document.querySelector(
@@ -229,13 +173,13 @@ export class FisiMap extends mapboxgl.Map {
       if (hoveredAmbientId !== null) {
         // If an ambient is currently being hovered, disable it
         this.setFeatureState(
-          { source: layerMap[layerId], id: hoveredAmbientId  },
+          { source: geoJSONId, id: hoveredAmbientId },
           { hover: false }
         );
       }
       hoveredAmbientId = e.features[0].id;
       this.setFeatureState(
-        { source: layerMap[layerId], id: hoveredAmbientId },
+        { source: geoJSONId, id: hoveredAmbientId },
         { hover: true }
       );
       if (currentlyShownAmbientId !== hoveredAmbientId) {
@@ -248,7 +192,7 @@ export class FisiMap extends mapboxgl.Map {
     this.on('mouseleave', layerId, () => {
       if (hoveredAmbientId !== null) {
         this.setFeatureState(
-          { source: layerMap[layerId], id: hoveredAmbientId },
+          { source: geoJSONId, id: hoveredAmbientId },
           { hover: false }
         );
       }
@@ -256,22 +200,142 @@ export class FisiMap extends mapboxgl.Map {
       document.querySelector(
         '.mapboxgl-canvas-container.mapboxgl-interactive'
       ).style.cursor = '';
-  });
-  }
-
-  changeVisibility(layerId, visibility) {
-    const layerIds = [layerId, layerId + 'Outline', layerId + 'Labels'];
-    layerIds.forEach((layerId) => {
-      const layer = this.getLayer(layerId);
-      if (layer) {
-        this.setLayoutProperty(layerId, 'visibility', visibility);
-      }
     });
   }
 
+  /**
+   * Dinamically load all the Fisi floors.-
+   */
+  loadFloorLevels() {
+    Object.keys(this.geoJSONDataMap).forEach(geoJSONSourceName => {
+      if (!geoJSONSourceName.startsWith('fisi_level')) return;
 
+      const groupId = geoJSONSourceName.replace('.geo.json', '');
+      const layerGroup = new LayerGroup({
+        map: this,
+        groupId,
+        isVisible: groupId === `fisi_level${this.initialVisibleFloor}`,
+        geoJSONSource: geoJSONSourceName
+      });
 
-  // Change layer's paint property dinamically:
-  // https://docs.mapbox.com/mapbox-gl-js/api/map/#map#setpaintproperty
+      // Fill layer
+      layerGroup.pushLayer('fill', {
+        type: 'fill',
+        paint: {
+          'fill-color': [
+            'match',
+            ['get', 'category'],
+            ...[...this.categoryToColorMap.entries()].flat(),
+            '#e6dbc7' // default
+          ],
+          'fill-opacity': [
+            'case',
+            ['boolean', ['feature-state', 'hover'], false],
+            1,
+            0.5
+          ]
+        },
+      });
+
+      /* Show ambient's stroke */
+      layerGroup.pushLayer('outline', {
+        type: 'line',
+        paint: {
+          'line-color': '#000',
+          'line-width': 0.4
+        }
+      });
+
+      /* Show ambient's names */
+      layerGroup.pushLayer('labels', {
+        type: 'symbol',
+        layout: {
+          // Hide text labels for zoom levels below 17.
+          'text-field': [
+            'step',
+            ['zoom'],
+            '',
+            FisiMap.MAP_MAX_ZOOM - 3,
+            ['get', 'name']
+          ],
+          'text-variable-anchor': ['center'],
+          'text-radial-offset': 0.5,
+          'text-justify': 'auto',
+          'icon-image': ['get', 'icon'], // TODO: icons?
+          'text-size': [
+            'interpolate',
+            ['linear'],
+            ['zoom'],
+            17, 0, // < 17 zoom -> 0px
+            18, 8, // 18 zoom -> 8px
+            22, 14 // > 22 zoom -> 14px
+          ]
+        }
+      });
+
+      const clickeableLayerId = layerGroup.getLayerIdByType('fill');
+      this.on('click', clickeableLayerId, FisiMap.handleAmbientClick)
+
+      layerGroup.addToMap();
+      this.floorsLayerGroups.push(layerGroup);
+      this.makeLayerHoverable(clickeableLayerId);
+    });
+
+    // Add toggable floor buttons
+    const toggableButtons = this.floorsLayerGroups.map((floorGroup, i) => {
+      const button = document.createElement('button');
+      button.textContent = `${i + 1}`;
+      button.dataset.groupToToggle = floorGroup.groupID;
+      if ((i + 1) === this.initialVisibleFloor) {
+        button.classList.add('active');
+      }
+      return button;
+    });
+
+    toggableButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        this.floorsLayerGroups.forEach((floorGroup) => {
+          floorGroup.setIsVisible(floorGroup.groupID === button.dataset.groupToToggle);
+        });
+        toggableButtons.forEach((button) => {
+          button.classList.remove('active');
+        });
+        button.classList.add('active');
+      });
+      const layers = document.getElementById('toggleable-layers');
+      layers.prepend(button);
+    });
+  }
+
+  /**
+   * This defines the logic when an ambient is clicked.
+   *
+   * @param {mapboxgl.MapMouseEvent & {features?: mapboxgl.MapboxGeoJSONFeature[] | undefined;} & mapboxgl.EventData} e
+   */
+  static handleAmbientClick(e) {
+    const feature = e.features[0];
+    const ambient = this.ambientsData.find((ambient) => ambient.ambient_id === feature.id);
+
+    // little popup, the information should be available in the ambientsData Properties
+    new mapboxgl.Popup()
+      .setLngLat(e.lngLat)
+      .setHTML(`<h3>${ambient.description}</h3>`)
+      .addTo(this);
+
+    this.flyTo({
+      center: e.lngLat,
+      zoom: 20,
+      offset: [100, 0]
+    });
+
+    // Update the sidepanel information based on the ambient_id
+    const information = document.getElementById('sidepanel-information');
+    const title = information.getElementsByTagName('h4')[0];
+    title.textContent = ambient.name;
+    const description = information.getElementsByTagName('p')[0];
+    description.textContent = ambient.description;
+
+    const sidepanel = document.getElementById('sidepanel');
+    sidepanel.classList.remove('hidden');
+  }
 }
-

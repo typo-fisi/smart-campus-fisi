@@ -120,7 +120,7 @@
         "tags": []
     },
     {
-        "name": "Departamento Académico de Ciencias de la Computación",
+        "name": "Departamento Académico de CC",
         "category": "administrativo",
         "ambient_id": 4,
         "description": "Esta oficina le pertenece al departamento académico de ciencias de la computación. Está constituido por docentes de la facultad dedicados a áreas afines del saber y con la finalidad de estudiar, investigar y actualizar contenidos, mejorar estrategias pedagógicas y preparar sílabos por asignaturas.",
@@ -128,7 +128,7 @@
         "tags": []
     },
     {
-        "name": "Unidad de Servicios Generales Operaciones y Mantenimiento",
+        "name": "Unidad de Serv. Generales Operaciones y Mantenimiento",
         "category": "administrativo",
         "ambient_id": 5,
         "description": "Esta oficina, dependiente del departamento administrativo, se encarga de la gestión de los inmuebles e infraestructura de la facultad, contrata de algunos servicios y mantenimiento de las áreas.",
@@ -258,8 +258,16 @@
     {
         "name": "Capilla de la Fisi",
         "category": "miscelanea",
-        "ambient_id": 25,
+        "ambient_id": 20,
         "description": "Capilla de la facultad, inaugurada el 30 de noviembre del 2022 para conmemorar su 22 aniversario.",
+        "gallery": [],
+        "tags": []
+    },
+    {
+        "name": "Quiosco de la Fisi",
+        "category": "miscelanea",
+        "ambient_id": 22,
+        "description": "En este quiosco los estudiantes pueden encontrar gran variedad de materiales académicos de papelería y oficina, así como también fotocopiadoras e impresoras",
         "gallery": [],
         "tags": []
     }
