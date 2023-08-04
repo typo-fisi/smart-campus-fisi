@@ -7,3 +7,14 @@
   display: none;
 }
 
+#map {
+  opacity: 0.4;
+}
+
+.mapboxgl-ctrl-bottom-right {
+  user-select: none;
+}
+
+img {
+  user-select: none;
+}

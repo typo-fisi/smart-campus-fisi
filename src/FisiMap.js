@@ -1,5 +1,6 @@
 import mapboxgl from 'mapbox-gl';
 import { LayerGroup } from './LayerGroup';
+import { DraggableCat } from './DraggableCat';
 
 export class FisiMap extends mapboxgl.Map {
   static INITIAL_MAP_ZOOM = 18;
@@ -9,6 +10,11 @@ export class FisiMap extends mapboxgl.Map {
     [-77.10696407267761, -12.073808103180393], // SW (suroeste)
     [-77.06157625505902, -12.041444357181149], // NE (noreste)
   ];
+  /** @type {HTMLElement} container */
+  htmlElement = null;
+  /**
+   * @private @type {mapboxgl.LngLat} */
+  mouseCurrentCoordinates = null;
   /**
    * This data map gets populated when loadGeoJSONData is called
    * @type {Object<string, Object>}
@@ -18,6 +24,7 @@ export class FisiMap extends mapboxgl.Map {
     'fisi_outer_layer.geo.json': null,
     'fisi_level1.geo.json': null,
     'fisi_level2.geo.json': null,
+    '360_interactive_points.geo.json': null
   };
   initialVisibleFloor = 1;
 
@@ -58,6 +65,7 @@ export class FisiMap extends mapboxgl.Map {
     });
     // To write map.(...) instead of this.(...)
     const map = this;
+    map.htmlElement = document.getElementById(containerId);
 
     // Interactive controls that modify the UI:
     // https://docs.mapbox.com/mapbox-gl-js/api/markers/
@@ -78,6 +86,10 @@ export class FisiMap extends mapboxgl.Map {
       }),
       'bottom-right'
     );
+
+    map.on('mousemove', (e) => {
+      this.mouseCurrentCoordinates = e.lngLat;
+    });
   }
 
   printMap() {
@@ -88,6 +100,31 @@ export class FisiMap extends mapboxgl.Map {
       anchor.download = 'map.png';
       anchor.click();
     });
+  }
+
+  /**
+   * @param {{x: number, y: number}} coords coords in pixels relative to canvas
+   * @returns {{lng: number, lat: number}} coords in lngLat format
+   */
+  getCoordsFromMouseCanvasPosition({ x, y }) {
+    return this.unproject({ x, y });
+  }
+
+  /**
+   * @param {{x: number, y: number}} coords coords in pixels relative the document
+   * @returns {{lng: number, lat: number}} coords in lngLat format
+   */
+  getCoordsFromMouseDocumentPosition({ x, y }) {
+    const rect = this.htmlElement.getBoundingClientRect();
+    const mouseCanvasPosition = {
+      x: x - rect.left,
+      y: y - rect.top
+    };
+    return this.getCoordsFromMouseCanvasPosition(mouseCanvasPosition);
+  }
+
+  getMouseCurrentCoordinates() {
+    return this.mouseCurrentCoordinates;
   }
 
   waitForMapLoaded() {
@@ -337,5 +374,11 @@ export class FisiMap extends mapboxgl.Map {
 
     const sidepanel = document.getElementById('sidepanel');
     sidepanel.classList.remove('hidden');
+  }
+
+  setupCat() {
+    new DraggableCat({
+      map: this
+    });
   }
 }

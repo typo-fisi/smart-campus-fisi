@@ -1,0 +1,8 @@
+{
+"type": "FeatureCollection",
+"features": [
+{ "type": "Feature", "properties": { "image_id": "random1" }, "geometry": { "type": "Point", "coordinates": [ -77.08543329884598, -12.052760304916276 ] } },
+{ "type": "Feature", "properties": { "image_id": "random2" }, "geometry": { "type": "Point", "coordinates": [ -77.08540329884598, -12.052750304916276 ] } },
+{ "type": "Feature", "properties": { "image_id": "fisi" }, "geometry": { "type": "Point", "coordinates": [ -77.08571507905081, -12.053636807023992 ] } }
+]
+}

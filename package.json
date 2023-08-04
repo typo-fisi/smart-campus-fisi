@@ -13,6 +13,8 @@
     "vite": "4.4.5"
   },
   "dependencies": {
+    "@photo-sphere-viewer/core": "^5.1.7",
+    "@turf/distance": "^6.5.0",
     "@types/mapbox-gl": "^2.7.12",
     "mapbox-gl": "^2.15.0"
   }
