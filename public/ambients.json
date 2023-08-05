@@ -270,5 +270,239 @@
         "description": "En este quiosco los estudiantes pueden encontrar gran variedad de materiales académicos de papelería y oficina, así como también fotocopiadoras e impresoras",
         "gallery": [],
         "tags": []
-    }
+    },
+
+
+    {
+        "name": "Aula Magna",
+        "tags": [],
+        "category": "salones",
+        "ambient_id": null,
+        "description": "Es uno de los salones mas grandes de la facultad, posee un proyector vertical, una gran cantidad de carpetas, una mesa de conferencias y una computadora móvil, lo que podría indicar que originalmente era usada como sala de conferencias. Hoy en día se usa como aula para secciones muy grandes.",
+        "gallery": []
+      },
+      {
+        "name": "Laboratorio 1 del segundo nivel",
+        "tags": [],
+        "category": "laboratoio",
+        "ambient_id": null,
+        "description": "Es uno de los únicos laboratorios del viejo pabellón, generalmente está cerrado y a oscuras.",
+        "gallery": []
+      },
+      {
+        "name": "Tercio Estudiantil",
+        "tags": [],
+        "category": "laboratoio",
+        "ambient_id": null,
+        "description": "Aula reservada para administrativos y miembros del tercio estudiantil, generalmente está cerrada y tiene poco aforo, sin embargo es un salón mas o menos espacioso.",
+        "gallery": []
+      },
+      {
+        "name": "Salon 200",
+        "tags": [],
+        "category": "laboratoio",
+        "ambient_id": null,
+        "description": "Aula regular perteneciente al segundo nivel del viejo pabellón de la facultad.",
+        "gallery": []
+      },
+      {
+        "name": "Salon 201",
+        "tags": [],
+        "category": "laboratoio",
+        "ambient_id": null,
+        "description": "Aula regular perteneciente al segundo nivel del viejo pabellón de la facultad.",
+        "gallery": []
+      },
+      {
+        "name": "Salon 202",
+        "tags": [],
+        "category": "laboratoio",
+        "ambient_id": null,
+        "description": "Aula regular perteneciente al segundo nivel del viejo pabellón de la facultad.",
+        "gallery": []
+      },
+      {
+        "name": "Salon 203",
+        "tags": [],
+        "category": "laboratoio",
+        "ambient_id": null,
+        "description": "Aula regular perteneciente al segundo nivel del viejo pabellón de la facultad.",
+        "gallery": []
+      },
+      {
+        "name": "Salon 204",
+        "tags": [],
+        "category": "laboratoio",
+        "ambient_id": null,
+        "description": "Aula regular perteneciente al segundo nivel del viejo pabellón de la facultad.",
+        "gallery": []
+      },
+      {
+        "name": "Salon 205",
+        "tags": [],
+        "category": "laboratoio",
+        "ambient_id": null,
+        "description": "Aula regular perteneciente al segundo nivel del viejo pabellón de la facultad.",
+        "gallery": []
+      },
+      {
+        "name": "Salon 206",
+        "tags": [],
+        "category": "laboratoio",
+        "ambient_id": null,
+        "description": "Aula regular perteneciente al segundo nivel del viejo pabellón de la facultad.",
+        "gallery": []
+      },
+      {
+        "name": "Salon 207",
+        "tags": [],
+        "category": "laboratoio",
+        "ambient_id": null,
+        "description": "Aula regular perteneciente al segundo nivel del viejo pabellón de la facultad.",
+        "gallery": []
+      },
+      {
+        "name": "Salon 208",
+        "tags": [],
+        "category": "laboratoio",
+        "ambient_id": null,
+        "description": "Aula regular perteneciente al segundo nivel del viejo pabellón de la facultad.",
+        "gallery": []
+      },
+      {
+        "name": "Salon 209",
+        "tags": [],
+        "category": "laboratoio",
+        "ambient_id": null,
+        "description": "Aula regular perteneciente al segundo nivel del viejo pabellón de la facultad.",
+        "gallery": []
+      },
+      {
+        "name": "Salon 210",
+        "tags": [],
+        "category": "laboratoio",
+        "ambient_id": null,
+        "description": "Aula regular perteneciente al segundo nivel del viejo pabellón de la facultad.",
+        "gallery": []
+      },
+      {
+        "name": "vitrina de trofeos",
+        "tags": [],
+        "category": "miscelanea",
+        "ambient_id": null,
+        "description": "vitrina de vidrio usada para guardar los distintos trofeos que la facultad ha ganado en los eventos de los que participó.",
+        "gallery": []
+      },
+      {
+        "name": "Baño de segunda planta 1",
+        "tags": [],
+        "category": "miscelanea",
+        "ambient_id": null,
+        "description": "Los baños de la sgunda planta suelen estar menos populados que los del primer piso, además de ser bastante limpiosy generalmente tener papel disponible.",
+        "gallery": []
+      },
+      {
+        "name": "Comedor de la facultad",
+        "tags": [],
+        "category": "miscelanea",
+        "ambient_id": null,
+        "description": "El comedor de la facultad tiene uno de los ambientes mas grandes de todos, es espacioso, tiene una entrada de luz bastante buena, tiene microondas de libre acceso de donde calentar tu comida y generalmente es bastante frecuentado. Tiene también mesas largas para comer. Sin embargo no venden comida, solo es un ambiente comunitario.",
+        "gallery": []
+      },
+      {
+        "name": "Comedor de la facultad",
+        "tags": [],
+        "category": "miscelanea",
+        "ambient_id": null,
+        "description": "El comedor de la facultad tiene uno de los ambientes mas grandes de todos, es espacioso, tiene una entrada de luz bastante buena, tiene microondas de libre acceso de donde calentar tu comida y generalmente es bastante frecuentado. Tiene también mesas largas para comer. Sin embargo no venden comida, solo es un ambiente comunitario.",
+        "gallery": []
+      },
+      {
+        "name": "Salon 200 del nuevo pabellón",
+        "tags": [],
+        "category": "miscelanea",
+        "ambient_id": null,
+        "description": "Aula regular perteneciente al segundo nivel del nuevo pabellón de la facultad.",
+        "gallery": []
+      },
+      {
+        "name": "Salon 201 del nuevo pabellón",
+        "tags": [],
+        "category": "miscelanea",
+        "ambient_id": null,
+        "description": "Aula regular perteneciente al segundo nivel del nuevo pabellón de la facultad.",
+        "gallery": []
+      },
+      {
+        "name": "Salon 202 del nuevo pabellón",
+        "tags": [],
+        "category": "miscelanea",
+        "ambient_id": null,
+        "description": "Aula regular perteneciente al segundo nivel del nuevo pabellón de la facultad.",
+        "gallery": []
+      },
+      {
+          "name": "Salon 203 del nuevo pabellón",
+          "tags": [],
+          "category": "miscelanea",
+          "ambient_id": null,
+          "description": "Aula regular perteneciente al segundo nivel del nuevo pabellón de la facultad.",
+          "gallery": []
+      },
+      {
+          "name": "Laboratorio 01 del nuevo pabellon",
+          "tags": [],
+          "category": "laboratoio",
+          "ambient_id": null,
+          "description": "Laboratorio del nuevo pabellón regular, con espacio considerable pero con implementos limitados, usualmente las computadoras o las sillas se desabastecen para la cantidad de alumnos.",
+          "gallery": []
+      },
+      {
+          "name": "Laboratorio 02 del nuevo pabellon",
+          "tags": [],
+          "category": "laboratoio",
+          "ambient_id": null,
+          "description": "Laboratorio del nuevo pabellón regular, con espacio considerable pero con implementos limitados, usualmente las computadoras o las sillas se desabastecen para la cantidad de alumnos.",
+          "gallery": []
+      },
+      {
+          "name": "Laboratorio 03 del nuevo pabellon",
+          "tags": [],
+          "category": "laboratoio",
+          "ambient_id": null,
+          "description": "Laboratorio del nuevo pabellón regular, con espacio considerable pero con implementos limitados, usualmente las computadoras o las sillas se desabastecen para la cantidad de alumnos.",
+          "gallery": []
+      },
+      {
+          "name": "Laboratorio 04 del nuevo pabellon",
+          "tags": [],
+          "category": "laboratoio",
+          "ambient_id": null,
+          "description": "Laboratorio del nuevo pabellón regular, con espacio considerable pero con implementos limitados, usualmente las computadoras o las sillas se desabastecen para la cantidad de alumnos.",
+          "gallery": []
+      },
+      {
+          "name": "Laboratorio 05 del nuevo pabellon",
+          "tags": [],
+          "category": "laboratoio",
+          "ambient_id": null,
+          "description": "Laboratorio del nuevo pabellón regular, con espacio considerable pero con implementos limitados, usualmente las computadoras o las sillas se desabastecen para la cantidad de alumnos.",
+          "gallery": []
+      },
+     {
+          "name": "Laboratorio 06 nuevo pabellon",
+          "tags": [],
+          "category": "laboratoio",
+          "ambient_id": null,
+          "description": "Laboratorio del nuevo pabellón regular, con espacio considerable pero con implementos limitados, usualmente las computadoras o las sillas se desabastecen para la cantidad de alumnos.",
+          "gallery": []
+      },
+      {
+          "name": "Data Center",
+          "tags": [],
+          "category": "laboratoio",
+          "ambient_id": null,
+          "description": "El data center de la facultad, dirigido en presencial por miembros del departamento académico y el grupo de data science de la facultad. Por el momento no contiene una computadora de alto rendimiento como tal, sino que genera estados de mantenimiento como un mainframe. Usualmente está cerrado y tiene acceso público.",
+          "gallery": []
+      }
 ]

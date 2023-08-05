@@ -24,6 +24,10 @@ export class FisiMap extends mapboxgl.Map {
     'fisi_outer_layer.geo.json': null,
     'fisi_level1.geo.json': null,
     'fisi_level2.geo.json': null,
+    'fisi_level3.geo.json': null,
+    'fisi_level3.geo.json': null,
+    'fisi_green.geo.json': null,
+    'fisi_trees.geo.json': null,
     '360_interactive_points.geo.json': null
   };
   initialVisibleFloor = 1;
@@ -168,11 +172,14 @@ export class FisiMap extends mapboxgl.Map {
           ));
           if (!properties) {
             // TODO: throwing this error is important, but we don't have enough data yet
+            // alert(`The geoJSON file '${filename}' contains an ambient_id=${ambientIdToPopulate} that was not found in the ambients json data`)
             // throw Error(
             //   `The geoJSON file '${filename}' contains an ambient_id=${ambientIdToPopulate} that was not found in the ambients json data`
             // );
           }
-          feature.properties = { ...properties };
+          else {
+            feature.properties = { ...properties };
+          }
         });
       }
       this.geoJSONDataMap[filename] = jsonData;
@@ -288,13 +295,7 @@ export class FisiMap extends mapboxgl.Map {
         type: 'symbol',
         layout: {
           // Hide text labels for zoom levels below 17.
-          'text-field': [
-            'step',
-            ['zoom'],
-            '',
-            FisiMap.MAP_MAX_ZOOM - 3,
-            ['get', 'name']
-          ],
+          'text-field': ['get', 'ambient_id'],
           'text-variable-anchor': ['center'],
           'text-radial-offset': 0.5,
           'text-justify': 'auto',

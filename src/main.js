@@ -47,8 +47,13 @@ ready.then(() => {
     source: '360_interactive_points.geo.json',
     type: 'circle',
     paint: {
-      'circle-color': '#ff0000',
-      'circle-radius': 5
+      'circle-color': '#3f5c9e',
+      'circle-radius': 5,
+      'circle-blur': 0.5,
+      'circle-opacity': 0.5
+    },
+    layout: {
+      visibility: 'none'
     }
   });
 });

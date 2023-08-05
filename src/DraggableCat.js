@@ -8,6 +8,7 @@ export class DraggableCat {
   static FISI_MAP_ID = 'fisimap';
   static VIEWER_ID = 'sphere-viewer';
 
+  /** @type {FisiMap} */
   map = null;
 
   catButtonContainer = null;
@@ -95,6 +96,7 @@ export class DraggableCat {
   }
 
   onCatStartDragging(event) {
+    this.map.setLayoutProperty('fisiVRPoints', 'visibility', 'visible');
     // Prevent default behavior for both mouse and touch events
     event.preventDefault();
     // Store the initial pointer/touch position
@@ -113,6 +115,7 @@ export class DraggableCat {
 
   onCatDrop(event)  {
     if (!this.isDragging) return; // Return if dragging hasn't started
+    this.map.setLayoutProperty('fisiVRPoints', 'visibility', 'none');
     // Set the dragging flag to false
     this.isDragging = false;
     this.draggableCat.style.display = 'none';
@@ -137,10 +140,11 @@ export class DraggableCat {
       return prev;
     }, { distance: Infinity });
 
+    console.log('showing fullscreen')
     this.show360Viewer(nearestPoint.image_id);
   }
 
-  show360Viewer(image_id) {
+  async show360Viewer(image_id) {
     document.getElementById('fisimap').style.display = 'none';
     const view = document.getElementById('sphere-viewer');
     const canvas = document.createElement('canvas');
@@ -149,12 +153,17 @@ export class DraggableCat {
     view.appendChild(canvas);
     document.getElementById('app-header').style.display = 'none';
     this.is360ViewerActive = true;
-    view.requestFullscreen();
+    try {
+      // view.requestFullscreen();
+    } catch {
+
+    }
 
     const viewer = new View360("#sphere-viewer", {
       useResizeObserver: true,
       useGrabCursor: true,
       disableContextMenu: true,
+      scrollable: false,
       projection: new EquirectProjection({
         // Image URL to your 360 panorama image/video
         src: `./360/${image_id}.jpg`,
@@ -164,7 +173,7 @@ export class DraggableCat {
       initialZoom: IS_MOBILE ? 2 : 0.5,
       plugins: [new LoadingSpinner(), new ControlBar({
         keyboardControls: true,
-        fullscreenButton: true
+        fullscreenButton: false
       })]
     });
 
@@ -173,12 +182,13 @@ export class DraggableCat {
   }
 
   close360Viewer() {
+    if (!this.is360ViewerActive) return;
     document.getElementById('fisimap').style.display = 'block';
     document.getElementById('sphere-viewer').style.display = 'none';
     document.getElementById('app-header').style.display = 'block';
     document.querySelector('.view360-canvas').remove();
     this.is360ViewerActive = false;
-    document.exitFullscreen();
+    // document.exitFullscreen();
   }
 
   // Function to get the event position (x, y) for both mouse and touch events

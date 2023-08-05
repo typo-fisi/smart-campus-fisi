@@ -142,7 +142,7 @@ main {
   }
 
   #sphere-viewer {
-    height: 100vh;
+    height: calc(100vh);
     max-height: 100vh;
     background-color: black;
     display: none;
