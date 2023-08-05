@@ -153,8 +153,8 @@ export class FisiMap extends mapboxgl.Map {
 
   async loadAssignmentsToMemory() {
     try {
-      const assignmentsResponse = await fetch(`${import.meta.env.VITE_AMBIENTS_API_URL}/api/assignments/`);
-      // const assignmentsResponse = await fetch('./assignments.json');
+      // const assignmentsResponse = await fetch(`${import.meta.env.VITE_AMBIENTS_API_URL}/api/assignments/`);
+      const assignmentsResponse = await fetch('./assignments.json');
       this.assignmentsData = await assignmentsResponse.json();
     } catch (e) {
       console.error('Could not fetch assignments data!!', e);
@@ -308,7 +308,7 @@ export class FisiMap extends mapboxgl.Map {
         type: 'line',
         paint: {
           'line-color': '#000',
-          'line-width': 0.4
+          'line-width': 0.6
         }
       });
 
