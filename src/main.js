@@ -1,6 +1,5 @@
 import mapboxgl from 'mapbox-gl';
 import { FisiMap } from './FisiMap';
-import distance from '@turf/distance';
 
 import 'mapbox-gl/dist/mapbox-gl.css';
 import './styles/globals.scss';

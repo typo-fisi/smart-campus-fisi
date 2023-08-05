@@ -1,122 +1,198 @@
+import View360, { ControlBar, EquirectProjection, LoadingSpinner } from "@egjs/view360";
 import distance from '@turf/distance';
 import { FisiMap } from './FisiMap';
 
+export const IS_MOBILE = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth < 600;
+
 export class DraggableCat {
+  static FISI_MAP_ID = 'fisimap';
+  static VIEWER_ID = 'sphere-viewer';
+
   map = null;
+
+  catButtonContainer = null;
+  catImage = null;
+  draggableCat = null;
+  is360ViewerActive = false;
+
+  // Variables to store initial pointer/touch position and element position
+  initialX = 0;
+  initialY = 0;
+  offsetX = 0;
+  offsetY = 0;
+  isDragging = false;
 
   /** @param {{ map: FisiMap }} constructor */
   constructor({ map }) {
     this.map = map;
 
-    const elementContainer = document.createElement('div');
-    elementContainer.style.height = '26px';
+    this.catButtonContainer = document.createElement('div');
+    this.catButtonContainer.style.height = '26px';
 
-    const catButton = document.createElement('span');
-    catButton.style.backgroundImage = 'url(./gato_tesla.png)';
-    catButton.style.backgroundSize = 'contain';
-    catButton.style.backgroundRepeat = 'no-repeat';
-    catButton.style.display = 'block';
-    catButton.style.width = '100%';
-    catButton.style.height = '25px';
-    elementContainer.appendChild(catButton);
+    this.catImage = document.createElement('span');
+    this.catImage.style.backgroundImage = 'url(./gato_tesla.png)';
+    this.catImage.style.backgroundSize = 'contain';
+    this.catImage.style.backgroundRepeat = 'no-repeat';
+    this.catImage.style.display = 'block';
+    this.catImage.style.width = '100%';
+    this.catImage.style.height = '25px';
+    this.catButtonContainer.appendChild(this.catImage);
     document.querySelector('.mapboxgl-ctrl-bottom-right .mapboxgl-ctrl.mapboxgl-ctrl-group').prepend(
-      elementContainer
+      this.catButtonContainer
     );
 
-    const draggableCat = catButton.cloneNode(true);
-    draggableCat.style.position = 'absolute';
-    document.body.appendChild(draggableCat);
-
-    // Variables to store initial pointer/touch position and element position
-    let initialX, initialY;
-    let offsetX = 0, offsetY = 0;
-    let isDragging = false;
-
-    // Function to get the event position (x, y) for both mouse and touch events
-    function getEventPosition(event) {
-      if (event instanceof MouseEvent) {
-        return { x: event.clientX, y: event.clientY };
-      } else if (event instanceof TouchEvent) {
-        const touch = event.targetTouches[0];
-        return { x: touch.clientX, y: touch.clientY };
-      }
-      return { x: 0, y: 0 };
-    }
-
-    // Function to handle pointer/touch down event
-    function handlePointerDown(event) {
-      // Prevent default behavior for both mouse and touch events
-      event.preventDefault();
-
-      // Store the initial pointer/touch position
-      const { x, y } = getEventPosition(event);
-      initialX = x;
-      initialY = y;
-
-      // Get the current position of the draggable element
-      const rect = catButton.getBoundingClientRect();
-      offsetX = x - rect.left;
-      offsetY = y - rect.top;
-
-      // Set the dragging flag to true
-      isDragging = true;
-
-      // Add event listeners for pointer/touch move and up events
-      document.addEventListener(event.type === 'mousedown' ? 'mousemove' : 'touchmove', handlePointerMove);
-      document.addEventListener(event.type === 'mousedown' ? 'mouseup' : 'touchend', handlePointerUp);
-    }
-
-    // Function to handle pointer/touch move event
-    function handlePointerMove(event) {
-      if (!isDragging) return; // Return if dragging hasn't started
-
-      // Get the current pointer/touch position
-      const { x: eventX, y: eventY } = getEventPosition(event);
-
-      const x = eventX - offsetX;
-      const y = eventY - offsetY;
-
-      document.getElementById('position').innerHTML = `x: ${x}, y: ${y}`;
-
-      // Set the new position of the draggable element
-      draggableCat.style.left = `${x}px`;
-      draggableCat.style.top = `${y + offsetY + 10}px`;
-    }
-
-    /// Cat dropped
-    // Function to handle pointer/touch up event
-    function handlePointerUp(event) {
-      // Set the dragging flag to false
-      isDragging = false;
-      const mouseUpEvent = event.type === 'touchend' ? event.changedTouches[0] : event;
-      const droppedCoords = Object.values(map.getCoordsFromMouseDocumentPosition({
-        x: mouseUpEvent.clientX,
-        y: mouseUpEvent.clientY
-      }));
-
-      // get all the vr interactive points
-      const vrPoints = map.queryRenderedFeatures({
-        layers: ['fisiVRPoints']
-      }).map((f) => ({
-        image_id: f.properties.image_id,
-        distance: distance(droppedCoords, f.geometry.coordinates)
-      }));
-
-      const nearestPoint = vrPoints.reduce((prev, curr) => {
-        if (prev.distance > curr.distance) {
-          return curr;
-        }
-        return prev;
-      }, { distance: Infinity });
-
-      // Remove the pointer/touch move and up event listeners
-      document.removeEventListener(event.type === 'mousemove' ? 'mousemove' : 'touchmove', handlePointerMove);
-      document.removeEventListener(event.type === 'mouseup' ? 'mouseup' : 'touchend', handlePointerUp);
-    }
+    this.draggableCat = this.catImage.cloneNode(true);
+    this.draggableCat.style.position = 'absolute';
+    this.draggableCat.style.display = 'none';
+    this.draggableCat.style.top = '0';
+    document.body.appendChild(this.draggableCat);
 
     // Add event listeners for both mouse and touch events (works on both web and mobile)
-    catButton.addEventListener('mousedown', handlePointerDown);
-    catButton.addEventListener('touchstart', handlePointerDown);
+    this.catImage.addEventListener('mousedown', (event) => {
+      this.onCatStartDragging(event);
+    });
+    this.catImage.addEventListener('touchstart', (event) => {
+      this.onCatStartDragging(event);
+    });
+    document.addEventListener('touchmove', (event) => {
+      this.onCatMoving(event)
+    });
+    document.addEventListener('mousemove', (event) => {
+      this.onCatMoving(event)
+    });
+    document.addEventListener('mouseup', (event) => {
+      this.onCatDrop(event)
+    });
+    document.addEventListener('touchend', (event) => {
+      this.onCatDrop(event)
+    });
 
+    // listen to ESC key to close the 360 viewer
+    document.addEventListener('keydown', (event) => {
+      if (!this.is360ViewerActive) return;
+      if (event.key === 'Escape') {
+        this.close360Viewer();
+      }
+    });
+    document.querySelector('#sphere-viewer button').addEventListener('click', () => {
+      this.close360Viewer();
+    });
+  }
+
+  onCatMoving (event) {
+    if (!this.isDragging) return; // Return if dragging hasn't started
+    this.draggableCat.style.display = 'block';
+
+    // Get the current pointer/touch position
+    const { x: eventX, y: eventY } = this.getEventPosition(event);
+
+    const x = eventX - this.offsetX;
+    const y = eventY - this.offsetY;
+
+    // Set the new position of the draggable element
+    this.draggableCat.style.left = `${x}px`;
+    this.draggableCat.style.top = `${y + this.offsetY + 10}px`;
+  }
+
+  onCatStartDragging(event) {
+    // Prevent default behavior for both mouse and touch events
+    event.preventDefault();
+    // Store the initial pointer/touch position
+    const { x, y } = this.getEventPosition(event);
+    this.initialX = x;
+    this.initialY = y;
+
+    // Get the current position of the draggable element
+    const rect = this.catImage.getBoundingClientRect();
+    this.offsetX = x - rect.left;
+    this.offsetY = y - rect.top;
+
+    // Set the dragging flag to true
+    this.isDragging = true;
+  }
+
+  onCatDrop(event)  {
+    if (!this.isDragging) return; // Return if dragging hasn't started
+    // Set the dragging flag to false
+    this.isDragging = false;
+    this.draggableCat.style.display = 'none';
+    const { x: eventX, y: eventY } = this.getEventPosition(event);
+    const droppedCoords = Object.values(this.map.getCoordsFromMouseDocumentPosition({
+      x: eventX,
+      y: eventY
+    }));
+
+    // get all the vr interactive points
+    const vrPoints = this.map.queryRenderedFeatures({
+      layers: ['fisiVRPoints']
+    }).map((f) => ({
+      image_id: f.properties.image_id,
+      distance: distance(droppedCoords, f.geometry.coordinates)
+    }));
+
+    const nearestPoint = vrPoints.reduce((prev, curr) => {
+      if (prev.distance > curr.distance) {
+        return curr;
+      }
+      return prev;
+    }, { distance: Infinity });
+
+    this.show360Viewer(nearestPoint.image_id);
+  }
+
+  show360Viewer(image_id) {
+    document.getElementById('fisimap').style.display = 'none';
+    const view = document.getElementById('sphere-viewer');
+    const canvas = document.createElement('canvas');
+    view.style.display = 'block';
+    canvas.classList.add('view360-canvas');
+    view.appendChild(canvas);
+    document.getElementById('app-header').style.display = 'none';
+    this.is360ViewerActive = true;
+    view.requestFullscreen();
+
+    const viewer = new View360("#sphere-viewer", {
+      useResizeObserver: true,
+      useGrabCursor: true,
+      disableContextMenu: true,
+      projection: new EquirectProjection({
+        // Image URL to your 360 panorama image/video
+        src: `./360/${image_id}.jpg`,
+        // It's false, as it's gonna display image not video here
+        video: false,
+      }),
+      initialZoom: IS_MOBILE ? 2 : 0.5,
+      plugins: [new LoadingSpinner(), new ControlBar({
+        keyboardControls: true,
+        fullscreenButton: true
+      })]
+    });
+
+    viewer.on('load', () => {
+    });
+  }
+
+  close360Viewer() {
+    document.getElementById('fisimap').style.display = 'block';
+    document.getElementById('sphere-viewer').style.display = 'none';
+    document.getElementById('app-header').style.display = 'block';
+    document.querySelector('.view360-canvas').remove();
+    this.is360ViewerActive = false;
+    document.exitFullscreen();
+  }
+
+  // Function to get the event position (x, y) for both mouse and touch events
+  getEventPosition(event) {
+    if (event.type === 'touchend') {
+      return { x: event.changedTouches[0].clientX, y: event.changedTouches[0].clientY };
+    }
+    if (event instanceof MouseEvent) {
+      return { x: event.clientX, y: event.clientY };
+    }
+    else if (event instanceof TouchEvent) {
+      const touch = event.targetTouches[0];
+      return { x: touch.clientX, y: touch.clientY };
+    }
+    return { x: 0, y: 0 };
   }
 }

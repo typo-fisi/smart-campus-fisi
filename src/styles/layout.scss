@@ -9,6 +9,7 @@ header {
   height: var(--header-height);
   background-color: var(--main-color);
   color: #eeeef7;
+  z-index: 9090;
 
   figure {
     display: flex;
@@ -51,7 +52,7 @@ main {
     }
 
     #searchbar-spacing {
-      height: calc(var(--searchbar-height) + 8px);
+      height: calc(var(--searchbar-height) + 20px);
     }
 
     img {
@@ -76,7 +77,8 @@ main {
 
   #searchbar {
     $searchbar-border-color: #b9b9b9;
-    $searchbar-floating-padding: 4px;
+    $searchbar-floating-padding: 10px;
+    max-width: calc(100vw - 130px);
 
     display: flex;
     align-items: center;
@@ -133,8 +135,18 @@ main {
 
   #fisimap {
     height: calc(100vh - var(--header-height));
+    // display: none;
+    margin: 0;
+    width: 100vw;
+    font-family: sans-serif;
   }
 
+  #sphere-viewer {
+    height: 100vh;
+    max-height: 100vh;
+    background-color: black;
+    display: none;
+  }
 }
 
 #toggleable-layers {
@@ -182,5 +194,32 @@ main {
 }
 
 .mapboxgl-ctrl.mapboxgl-ctrl-group {
-  scale: 1.05;
+  scale: 1.2;
+  margin-bottom: 20px;
+  margin-right: 12px;
+}
+
+#sphere-viewer {
+  .view360-controls-float-right {
+    top: 6px;
+    right: 60px;
+
+    .view360-controls-pie {
+      height: 36px;
+      width: 36px;
+    }
+  }
+}
+
+#sphere-viewer .close-view-btn {
+  position: absolute;
+  right: 14px;
+  top: 9px;
+  z-index: 80000;
+  background-color: transparent;
+}
+#sphere-viewer .close-view-btn img {
+  width: 40px;
+  opacity: 0.8;
+  filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(73deg) brightness(103%) contrast(103%);
 }

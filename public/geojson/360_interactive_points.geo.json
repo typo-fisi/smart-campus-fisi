@@ -1,8 +1,96 @@
 {
-"type": "FeatureCollection",
-"features": [
-{ "type": "Feature", "properties": { "image_id": "random1" }, "geometry": { "type": "Point", "coordinates": [ -77.08543329884598, -12.052760304916276 ] } },
-{ "type": "Feature", "properties": { "image_id": "random2" }, "geometry": { "type": "Point", "coordinates": [ -77.08540329884598, -12.052750304916276 ] } },
-{ "type": "Feature", "properties": { "image_id": "fisi" }, "geometry": { "type": "Point", "coordinates": [ -77.08571507905081, -12.053636807023992 ] } }
-]
+    "type": "FeatureCollection",
+    "features": [
+        {
+            "type": "Feature",
+            "properties": {
+                "image_id": "entrada_nuevo_pabellon_1"
+            },
+            "geometry": {
+                "coordinates": [
+                    -77.0857348150861,
+                    -12.052939426150786
+                ],
+                "type": "Point"
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "image_id": "nuevo_pabellon_1"
+            },
+            "geometry": {
+                "coordinates": [
+                    -77.085577800035,
+                    -12.052719164699212
+                ],
+                "type": "Point"
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "image_id": "centro_viejo_pabellon_1"
+            },
+            "geometry": {
+                "coordinates": [
+                    -77.08563725001079,
+                    -12.053328390317546
+                ],
+                "type": "Point"
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "image_id": "centro_viejo_pabellon_2"
+            },
+            "geometry": {
+                "coordinates": [
+                    -77.0856961927226,
+                    -12.053160208624902
+                ],
+                "type": "Point"
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "image_id": "exterior_1"
+            },
+            "geometry": {
+                "coordinates": [
+                    -77.08544523840672,
+                    -12.053121928447155
+                ],
+                "type": "Point"
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "image_id": "pasillo_1_viejo_pabellon"
+            },
+            "geometry": {
+                "coordinates": [
+                    -77.08536027048144,
+                    -12.053319088577624
+                ],
+                "type": "Point"
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "image_id": "entrada_quiosco_1"
+            },
+            "geometry": {
+                "coordinates": [
+                    -77.08518357467914,
+                    -12.053297929749618
+                ],
+                "type": "Point"
+            }
+        }
+    ]
 }
