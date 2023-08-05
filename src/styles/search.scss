@@ -1,0 +1,56 @@
+
+#searchbox {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: var(--sidepanel-width);
+}
+
+#search-results {
+  top: 60px;
+  position: absolute;
+  z-index: 6969696969;
+  background-color: white;
+
+  .search-result {
+    h4 {
+      font-size: 15px;
+      font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
+    }
+
+    p {
+      font-size: 13px;
+      font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
+    }
+  }
+
+  .search-results-assignments button {
+    width: 100%;
+    text-align: left;
+    padding: 10px;
+    border-bottom: 1px solid #838383;
+    background-color: white;
+  }
+  .search-results-ambient {
+    padding: 10px;
+    width: 100%;
+    border-bottom: 1px solid #838383;
+  }
+}
+
+#sidepanel-information {
+  .groups-container .group {
+    border-bottom: 1px solid #2c2c2c;
+    padding-bottom: 8px;
+  }
+
+  h4.title {
+    padding-top: 20px;
+    font-size: 14px !important;
+    border-bottom: 1px solid #838383;
+  }
+
+  h5 {
+    margin-top: 10px;
+  }
+}

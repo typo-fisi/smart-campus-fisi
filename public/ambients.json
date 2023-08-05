@@ -1,508 +1,882 @@
 [
     {
-        "name": "Biblioteca",
-        "category": "miscelanea",
-        "ambient_id": 21,
-        "description": "Biblioteca de la facultad, está abierto la mayor parte del tiempo, tiene una buena cantidad de libros a disposición, personal apto y una zona libre de ruido con cubículos personales de estudio profundo.",
-        "gallery": [],
-        "tags": []
+      "name": "Biblioteca",
+      "category": "miscelanea",
+      "ambient_id": 121,
+      "description": "Biblioteca de la facultad, está abierto la mayor parte del tiempo, tiene una buena cantidad de libros a disposición, personal apto y una zona libre de ruido con cubículos personales de estudio profundo.",
+      "gallery": [],
+      "tags": []
     },
     {
-        "name": "Laboratorio primer nivel",
-        "category": "laboratorio",
-        "ambient_id": 19,
-        "description": "Único laboratorio del primer nivel de la facultad, espacioso, con varias ventanas y un proyector, usualmente está cerrado.",
-        "gallery": [],
-        "tags": []
+      "name": "Laboratorio primer nivel",
+      "category": "laboratorio",
+      "ambient_id": 119,
+      "description": "Único laboratorio del primer nivel de la facultad, espacioso, con varias ventanas y un proyector, usualmente está cerrado.",
+      "gallery": [],
+      "tags": []
     },
     {
-        "name": "Salon 100",
-        "category": "salones",
-        "ambient_id": 13,
-        "description": "Salón del viejo pabellón de la facultad con aforo regular que se encuentra en el primer nivel.",
-        "gallery": [],
-        "tags": []
+      "name": "Salón 100",
+      "category": "salones",
+      "ambient_id": 113,
+      "description": "Salón del viejo pabellón de la facultad con aforo regular que se encuentra en el primer nivel.",
+      "gallery": [],
+      "tags": []
     },
     {
-        "name": "Salon 101",
-        "category": "salones",
-        "ambient_id": 12,
-        "description": "Salón del viejo pabellón de la facultad con aforo regular que se encuentra en el primer nivel.",
-        "gallery": [],
-        "tags": []
+      "name": "Salón 101",
+      "category": "salones",
+      "ambient_id": 112,
+      "description": "Salón del viejo pabellón de la facultad con aforo regular que se encuentra en el primer nivel.",
+      "gallery": [],
+      "tags": []
     },
     {
-        "name": "Salon 102",
-        "category": "salones",
-        "ambient_id": 11,
-        "description": "Salón del viejo pabellón de la facultad con aforo regular que se encuentra en el primer nivel.",
-        "gallery": [],
-        "tags": []
+      "name": "Salón 102",
+      "category": "salones",
+      "ambient_id": 111,
+      "description": "Salón del viejo pabellón de la facultad con aforo regular que se encuentra en el primer nivel.",
+      "gallery": [],
+      "tags": []
     },
     {
-        "name": "Salon 103",
-        "category": "salones",
-        "ambient_id": 10,
-        "description": "Salón del viejo pabellón de la facultad con aforo regular que se encuentra en el primer nivel.",
-        "gallery": [],
-        "tags": []
+      "name": "Salón 103",
+      "category": "salones",
+      "ambient_id": 110,
+      "description": "Salón del viejo pabellón de la facultad con aforo regular que se encuentra en el primer nivel.",
+      "gallery": [],
+      "tags": []
     },
     {
-        "name": "Salon 104",
-        "category": "salones",
-        "ambient_id": 9,
-        "description": "Salón del viejo pabellón de la facultad con aforo regular que se encuentra en el primer nivel.",
-        "gallery": [],
-        "tags": []
+      "name": "Salón 104",
+      "category": "salones",
+      "ambient_id": 19,
+      "description": "Salón del viejo pabellón de la facultad con aforo regular que se encuentra en el primer nivel.",
+      "gallery": [],
+      "tags": []
     },
     {
-        "name": "Salon 105",
-        "category": "salones",
-        "ambient_id": 18,
-        "description": "Salón del viejo pabellón de la facultad con aforo regular que se encuentra en el primer nivel.",
-        "gallery": [],
-        "tags": []
+      "name": "Salón 105",
+      "category": "salones",
+      "ambient_id": 118,
+      "description": "Salón del viejo pabellón de la facultad con aforo regular que se encuentra en el primer nivel.",
+      "gallery": [],
+      "tags": []
     },
     {
-        "name": "Salon 106",
-        "category": "salones",
-        "ambient_id": 17,
-        "description": "Salón del viejo pabellón de la facultad con aforo regular que se encuentra en el primer nivel.",
-        "gallery": [],
-        "tags": []
+      "name": "Salón 106",
+      "category": "salones",
+      "ambient_id": 117,
+      "description": "Salón del viejo pabellón de la facultad con aforo regular que se encuentra en el primer nivel.",
+      "gallery": [],
+      "tags": []
     },
     {
-        "name": "Salon 107",
-        "category": "salones",
-        "ambient_id": 16,
-        "description": "Salón del viejo pabellón de la facultad con aforo regular que se encuentra en el primer nivel.",
-        "gallery": [],
-        "tags": []
+      "name": "Salón 107",
+      "category": "salones",
+      "ambient_id": 116,
+      "description": "Salón del viejo pabellón de la facultad con aforo regular que se encuentra en el primer nivel.",
+      "gallery": [],
+      "tags": []
     },
     {
-        "name": "Salon 108",
-        "category": "salones",
-        "ambient_id": 15,
-        "description": "Salón del viejo pabellón de la facultad con aforo regular que se encuentra en el primer nivel.",
-        "gallery": [],
-        "tags": []
+      "name": "Salón 108",
+      "category": "salones",
+      "ambient_id": 115,
+      "description": "Salón del viejo pabellón de la facultad con aforo regular que se encuentra en el primer nivel.",
+      "gallery": [],
+      "tags": []
     },
     {
-        "name": "Salon 109",
-        "category": "salones",
-        "ambient_id": 14,
-        "description": "Salón del viejo pabellón de la facultad con aforo regular que se encuentra en el primer nivel.",
-        "gallery": [],
-        "tags": []
+      "name": "Salón 109",
+      "category": "salones",
+      "ambient_id": 114,
+      "description": "Salón del viejo pabellón de la facultad con aforo regular que se encuentra en el primer nivel.",
+      "gallery": [],
+      "tags": []
     },
     {
-        "name": "Unidad de economía",
-        "category": "administrativo",
-        "ambient_id": 1,
-        "description": "Esta unidad se encarga de manejar y monitorear tanto los presupuestos como el tesoro, los ingresos y egresos y otros procesos económicos de la facultad.",
-        "gallery": [],
-        "tags": []
+      "name": "Unidad de economía",
+      "category": "administrativo",
+      "ambient_id": 101,
+      "description": "Esta unidad se encarga de manejar y monitorear tanto los presupuestos como el tesoro, los ingresos y egresos y otros procesos económicos de la facultad.",
+      "gallery": [],
+      "tags": []
     },
     {
-        "name": "DGA",
-        "category": "administrativo",
-        "ambient_id": 2,
-        "description": "Esta oficina le pertenece a la entidad de la UNMSM encargada de dirigir y conducir los procesos que integran los sistemas administrativos, servicios, economía, etc. de toda la universidad.",
-        "gallery": [],
-        "tags": []
+      "name": "DGA",
+      "category": "administrativo",
+      "ambient_id": 102,
+      "description": "Esta oficina le pertenece a la entidad de la UNMSM encargada de dirigir y conducir los procesos que integran los sistemas administrativos, servicios, economía, etc. de toda la universidad.",
+      "gallery": [],
+      "tags": []
     },
     {
-        "name": "CERSEU",
-        "category": "administrativo",
-        "ambient_id": 3,
-        "description": "Oficina encargada de acoplar el concepto de extensión universitaria y el de proyección social a la facultad, es decir, se encarga de promover actividades academicas extra curriculares de acceso sencillo a los estudiantes de la facultad. Aquí se pueden realizar trámites sobre cursos del propio CERSEU, inscripciones, etc.",
-        "gallery": [],
-        "tags": []
+      "name": "CERSEU",
+      "category": "administrativo",
+      "ambient_id": 103,
+      "description": "Oficina encargada de acoplar el concepto de extensión universitaria y el de proyección social a la facultad, es decir, se encarga de promover actividades academicas extra curriculares de acceso sencillo a los estudiantes de la facultad. Aquí se pueden realizar trámites sobre cursos del propio CERSEU, inscripciones, etc.",
+      "gallery": [],
+      "tags": []
     },
     {
-        "name": "Departamento Académico de CC",
-        "category": "administrativo",
-        "ambient_id": 4,
-        "description": "Esta oficina le pertenece al departamento académico de ciencias de la computación. Está constituido por docentes de la facultad dedicados a áreas afines del saber y con la finalidad de estudiar, investigar y actualizar contenidos, mejorar estrategias pedagógicas y preparar sílabos por asignaturas.",
-        "gallery": [],
-        "tags": []
+      "name": "Departamento Académico de CC",
+      "category": "administrativo",
+      "ambient_id": 104,
+      "description": "Esta oficina le pertenece al departamento académico de ciencias de la computación. Está constituido por docentes de la facultad dedicados a áreas afines del saber y con la finalidad de estudiar, investigar y actualizar contenidos, mejorar estrategias pedagógicas y preparar sílabos por asignaturas.",
+      "gallery": [],
+      "tags": []
     },
     {
-        "name": "Unidad de Serv. Generales Operaciones y Mantenimiento",
-        "category": "administrativo",
-        "ambient_id": 5,
-        "description": "Esta oficina, dependiente del departamento administrativo, se encarga de la gestión de los inmuebles e infraestructura de la facultad, contrata de algunos servicios y mantenimiento de las áreas.",
-        "gallery": [],
-        "tags": []
+      "name": "Unidad de Serv. Generales Operaciones y Mantenimiento",
+      "category": "administrativo",
+      "ambient_id": 105,
+      "description": "Esta oficina, dependiente del departamento administrativo, se encarga de la gestión de los inmuebles e infraestructura de la facultad, contrata de algunos servicios y mantenimiento de las áreas.",
+      "gallery": [],
+      "tags": []
     },
     {
-        "name": "Baño de primera planta n° 1",
-        "category": "sshh",
-        "ambient_id": 6,
-        "description": "Los baños son bastante limpios, espaciosos y generalmente tienen papel disponible.",
-        "gallery": [],
-        "tags": []
+      "name": "Baño de primera planta n° 1",
+      "category": "sshh",
+      "ambient_id": 106,
+      "description": "Los baños son bastante limpios, espaciosos y generalmente tienen papel disponible.",
+      "gallery": [],
+      "tags": []
     },
     {
-        "name": "Cuarto de limpieza",
-        "category": "miscelanea",
-        "ambient_id": 7,
-        "description": "Este cuarto tiene algunos implementos de limpieza, es popular porque, mientras el comedor está cerrado por algún motivo, tiene un microondas de fácil y libre acceso.",
-        "gallery": [],
-        "tags": []
+      "name": "Cuarto de limpieza",
+      "category": "miscelanea",
+      "ambient_id": 107,
+      "description": "Este cuarto tiene algunos implementos de limpieza, es popular porque, mientras el comedor está cerrado por algún motivo, tiene un microondas de fácil y libre acceso.",
+      "gallery": [],
+      "tags": []
     },
     {
-        "name": "Auditorio",
-        "category": "miscelanea",
-        "ambient_id": 8,
-        "description": "El auditorio es donde se llevan a cabo la mayoría de eventos/presentaciones de la facultad, ya sean formales e interfacultades como de eventos internos, generalmente está cerrado cuando está en desuso.",
-        "gallery": [],
-        "tags": []
+      "name": "Auditorio",
+      "category": "miscelanea",
+      "ambient_id": 108,
+      "description": "El auditorio es donde se llevan a cabo la mayoría de eventos/presentaciones de la facultad, ya sean formales e interfacultades como de eventos internos, generalmente está cerrado cuando está en desuso.",
+      "gallery": [],
+      "tags": []
     },
     {
-        "name": "Salon de estudio",
-        "category": "miscelanea",
-        "ambient_id": 24,
-        "description": "Salon no siempre abierto pero de libre acceso con, aparentemente, previo pedido. Acceso a una computadora y un lugar mas o menos silencioso.",
-        "gallery": [],
-        "tags": []
+      "name": "Salón de estudio",
+      "category": "miscelanea",
+      "ambient_id": 124,
+      "description": "Salón no siempre abierto pero de libre acceso con, aparentemente, previo pedido. Acceso a una computadora y un lugar mas o menos silencioso.",
+      "gallery": [],
+      "tags": []
     },
     {
-        "name": "Baño de primera planta n° 2",
-        "category": "sshh",
-        "ambient_id": 26,
-        "description": "Los baños son bastante limpios, espaciosos y generalmente tienen papel disponible.",
-        "gallery": [],
-        "tags": []
+      "name": "Baño de primera planta n° 2",
+      "category": "sshh",
+      "ambient_id": 126,
+      "description": "Los baños son bastante limpios, espaciosos y generalmente tienen papel disponible.",
+      "gallery": [],
+      "tags": []
     },
     {
-        "name": "Salon 100",
-        "category": "salones",
-        "ambient_id": 23,
-        "description": "Salón del nuevo pabellón de la facultad con aforo regular que se encuentra en el primer nivel.",
-        "gallery": [],
-        "tags": []
+      "name": "Salón 100",
+      "category": "salones",
+      "ambient_id": 123,
+      "description": "Salón del nuevo pabellón de la facultad con aforo regular que se encuentra en el primer nivel.",
+      "gallery": [],
+      "tags": []
     },
     {
-        "name": "Salon 101",
-        "category": "salones",
-        "ambient_id": 35,
-        "description": "Salón del nuevo pabellón de la facultad con aforo regular que se encuentra en el primer nivel.",
-        "gallery": [],
-        "tags": []
+      "name": "Salón 101",
+      "category": "salones",
+      "ambient_id": 133,
+      "description": "Salón del nuevo pabellón de la facultad con aforo regular que se encuentra en el primer nivel.",
+      "gallery": [],
+      "tags": []
     },
     {
-        "name": "Salon 102",
-        "category": "salones",
-        "ambient_id": 34,
-        "description": "Salón del nuevo pabellón de la facultad con aforo regular que se encuentra en el primer nivel.",
-        "gallery": [],
-        "tags": []
+      "name": "Escaleras",
+      "category": "stairs",
+      "ambient_id": 135,
+      "description": "Escaleras de acceso al segundo nivel del pabellón nuevo.",
+      "gallery": [],
+      "tags": []
     },
     {
-        "name": "Salon 103",
-        "category": "salones",
-        "ambient_id": 32,
-        "description": "Salón del nuevo pabellón de la facultad con aforo regular que se encuentra en el primer nivel.",
-        "gallery": [],
-        "tags": []
+      "name": "Salón 103",
+      "category": "salones",
+      "ambient_id": 132,
+      "description": "Salón del nuevo pabellón de la facultad con aforo regular que se encuentra en el primer nivel.",
+      "gallery": [],
+      "tags": []
     },
     {
-        "name": "Salon 104",
-        "category": "salones",
-        "ambient_id": 31,
-        "description": "Salón del nuevo pabellón de la facultad con aforo regular que se encuentra en el primer nivel.",
-        "gallery": [],
-        "tags": []
+      "name": "Salón 104",
+      "category": "salones",
+      "ambient_id": 131,
+      "description": "Salón del nuevo pabellón de la facultad con aforo regular que se encuentra en el primer nivel.",
+      "gallery": [],
+      "tags": []
     },
     {
-        "name": "Salon 105",
-        "category": "salones",
-        "ambient_id": 30,
-        "description": "Salón del nuevo pabellón de la facultad con aforo regular que se encuentra en el primer nivel.",
-        "gallery": [],
-        "tags": []
+      "name": "Salón 105",
+      "category": "salones",
+      "ambient_id": 130,
+      "description": "Salón del nuevo pabellón de la facultad con aforo regular que se encuentra en el primer nivel.",
+      "gallery": [],
+      "tags": []
     },
     {
-        "name": "Salon 106",
-        "category": "salones",
-        "ambient_id": 29,
-        "description": "Salón del nuevo pabellón de la facultad con aforo regular que se encuentra en el primer nivel.",
-        "gallery": [],
-        "tags": []
+      "name": "Salón 106",
+      "category": "salones",
+      "ambient_id": 129,
+      "description": "Salón del nuevo pabellón de la facultad con aforo regular que se encuentra en el primer nivel.",
+      "gallery": [],
+      "tags": []
     },
     {
-        "name": "Salon 107",
-        "category": "salones",
-        "ambient_id": 28,
-        "description": "Salón del nuevo pabellón de la facultad con aforo regular que se encuentra en el primer nivel.",
-        "gallery": [],
-        "tags": []
+      "name": "Salón 107",
+      "category": "salones",
+      "ambient_id": 128,
+      "description": "Salón del nuevo pabellón de la facultad con aforo regular que se encuentra en el primer nivel.",
+      "gallery": [],
+      "tags": []
     },
     {
-        "name": "Salon 108",
-        "category": "salones",
-        "ambient_id": 27,
-        "description": "Salón del nuevo pabellón de la facultad con aforo regular que se encuentra en el primer nivel.",
-        "gallery": [],
-        "tags": []
+      "name": "Salón 108",
+      "category": "salones",
+      "ambient_id": 127,
+      "description": "Salón del nuevo pabellón de la facultad con aforo regular que se encuentra en el primer nivel.",
+      "gallery": [],
+      "tags": []
     },
     {
-        "name": "Salon 109",
-        "category": "salones",
-        "ambient_id": 25,
-        "description": "Salón del nuevo pabellón de la facultad con aforo regular que se encuentra en el primer nivel.",
-        "gallery": [],
-        "tags": []
+      "name": "Salón 109",
+      "category": "salones",
+      "ambient_id": 125,
+      "description": "Salón del nuevo pabellón de la facultad con aforo regular que se encuentra en el primer nivel.",
+      "gallery": [],
+      "tags": []
     },
     {
-        "name": "Capilla de la Fisi",
-        "category": "miscelanea",
-        "ambient_id": 20,
-        "description": "Capilla de la facultad, inaugurada el 30 de noviembre del 2022 para conmemorar su 22 aniversario.",
-        "gallery": [],
-        "tags": []
+      "name": "Capilla de la Fisi",
+      "category": "miscelanea",
+      "ambient_id": 120,
+      "description": "Capilla de la facultad, inaugurada el 30 de noviembre del 2022 para conmemorar su 22 aniversario.",
+      "gallery": [],
+      "tags": []
     },
     {
-        "name": "Quiosco de la Fisi",
-        "category": "miscelanea",
-        "ambient_id": 22,
-        "description": "En este quiosco los estudiantes pueden encontrar gran variedad de materiales académicos de papelería y oficina, así como también fotocopiadoras e impresoras",
-        "gallery": [],
-        "tags": []
+      "name": "Quiosco de la Fisi",
+      "category": "miscelanea",
+      "ambient_id": 122,
+      "description": "En este quiosco los estudiantes pueden encontrar gran variedad de materiales académicos de papelería y oficina, así como también fotocopiadoras e impresoras",
+      "gallery": [],
+      "tags": []
     },
-
-
     {
-        "name": "Aula Magna",
-        "tags": [],
-        "category": "salones",
-        "ambient_id": null,
-        "description": "Es uno de los salones mas grandes de la facultad, posee un proyector vertical, una gran cantidad de carpetas, una mesa de conferencias y una computadora móvil, lo que podría indicar que originalmente era usada como sala de conferencias. Hoy en día se usa como aula para secciones muy grandes.",
-        "gallery": []
-      },
-      {
-        "name": "Laboratorio 1 del segundo nivel",
-        "tags": [],
-        "category": "laboratoio",
-        "ambient_id": null,
-        "description": "Es uno de los únicos laboratorios del viejo pabellón, generalmente está cerrado y a oscuras.",
-        "gallery": []
-      },
-      {
-        "name": "Tercio Estudiantil",
-        "tags": [],
-        "category": "laboratoio",
-        "ambient_id": null,
-        "description": "Aula reservada para administrativos y miembros del tercio estudiantil, generalmente está cerrada y tiene poco aforo, sin embargo es un salón mas o menos espacioso.",
-        "gallery": []
-      },
-      {
-        "name": "Salon 200",
-        "tags": [],
-        "category": "laboratoio",
-        "ambient_id": null,
-        "description": "Aula regular perteneciente al segundo nivel del viejo pabellón de la facultad.",
-        "gallery": []
-      },
-      {
-        "name": "Salon 201",
-        "tags": [],
-        "category": "laboratoio",
-        "ambient_id": null,
-        "description": "Aula regular perteneciente al segundo nivel del viejo pabellón de la facultad.",
-        "gallery": []
-      },
-      {
-        "name": "Salon 202",
-        "tags": [],
-        "category": "laboratoio",
-        "ambient_id": null,
-        "description": "Aula regular perteneciente al segundo nivel del viejo pabellón de la facultad.",
-        "gallery": []
-      },
-      {
-        "name": "Salon 203",
-        "tags": [],
-        "category": "laboratoio",
-        "ambient_id": null,
-        "description": "Aula regular perteneciente al segundo nivel del viejo pabellón de la facultad.",
-        "gallery": []
-      },
-      {
-        "name": "Salon 204",
-        "tags": [],
-        "category": "laboratoio",
-        "ambient_id": null,
-        "description": "Aula regular perteneciente al segundo nivel del viejo pabellón de la facultad.",
-        "gallery": []
-      },
-      {
-        "name": "Salon 205",
-        "tags": [],
-        "category": "laboratoio",
-        "ambient_id": null,
-        "description": "Aula regular perteneciente al segundo nivel del viejo pabellón de la facultad.",
-        "gallery": []
-      },
-      {
-        "name": "Salon 206",
-        "tags": [],
-        "category": "laboratoio",
-        "ambient_id": null,
-        "description": "Aula regular perteneciente al segundo nivel del viejo pabellón de la facultad.",
-        "gallery": []
-      },
-      {
-        "name": "Salon 207",
-        "tags": [],
-        "category": "laboratoio",
-        "ambient_id": null,
-        "description": "Aula regular perteneciente al segundo nivel del viejo pabellón de la facultad.",
-        "gallery": []
-      },
-      {
-        "name": "Salon 208",
-        "tags": [],
-        "category": "laboratoio",
-        "ambient_id": null,
-        "description": "Aula regular perteneciente al segundo nivel del viejo pabellón de la facultad.",
-        "gallery": []
-      },
-      {
-        "name": "Salon 209",
-        "tags": [],
-        "category": "laboratoio",
-        "ambient_id": null,
-        "description": "Aula regular perteneciente al segundo nivel del viejo pabellón de la facultad.",
-        "gallery": []
-      },
-      {
-        "name": "Salon 210",
-        "tags": [],
-        "category": "laboratoio",
-        "ambient_id": null,
-        "description": "Aula regular perteneciente al segundo nivel del viejo pabellón de la facultad.",
-        "gallery": []
-      },
-      {
-        "name": "vitrina de trofeos",
-        "tags": [],
-        "category": "miscelanea",
-        "ambient_id": null,
-        "description": "vitrina de vidrio usada para guardar los distintos trofeos que la facultad ha ganado en los eventos de los que participó.",
-        "gallery": []
-      },
-      {
-        "name": "Baño de segunda planta 1",
-        "tags": [],
-        "category": "miscelanea",
-        "ambient_id": null,
-        "description": "Los baños de la sgunda planta suelen estar menos populados que los del primer piso, además de ser bastante limpiosy generalmente tener papel disponible.",
-        "gallery": []
-      },
-      {
-        "name": "Comedor de la facultad",
-        "tags": [],
-        "category": "miscelanea",
-        "ambient_id": null,
-        "description": "El comedor de la facultad tiene uno de los ambientes mas grandes de todos, es espacioso, tiene una entrada de luz bastante buena, tiene microondas de libre acceso de donde calentar tu comida y generalmente es bastante frecuentado. Tiene también mesas largas para comer. Sin embargo no venden comida, solo es un ambiente comunitario.",
-        "gallery": []
-      },
-      {
-        "name": "Comedor de la facultad",
-        "tags": [],
-        "category": "miscelanea",
-        "ambient_id": null,
-        "description": "El comedor de la facultad tiene uno de los ambientes mas grandes de todos, es espacioso, tiene una entrada de luz bastante buena, tiene microondas de libre acceso de donde calentar tu comida y generalmente es bastante frecuentado. Tiene también mesas largas para comer. Sin embargo no venden comida, solo es un ambiente comunitario.",
-        "gallery": []
-      },
-      {
-        "name": "Salon 200 del nuevo pabellón",
-        "tags": [],
-        "category": "miscelanea",
-        "ambient_id": null,
-        "description": "Aula regular perteneciente al segundo nivel del nuevo pabellón de la facultad.",
-        "gallery": []
-      },
-      {
-        "name": "Salon 201 del nuevo pabellón",
-        "tags": [],
-        "category": "miscelanea",
-        "ambient_id": null,
-        "description": "Aula regular perteneciente al segundo nivel del nuevo pabellón de la facultad.",
-        "gallery": []
-      },
-      {
-        "name": "Salon 202 del nuevo pabellón",
-        "tags": [],
-        "category": "miscelanea",
-        "ambient_id": null,
-        "description": "Aula regular perteneciente al segundo nivel del nuevo pabellón de la facultad.",
-        "gallery": []
-      },
-      {
-          "name": "Salon 203 del nuevo pabellón",
-          "tags": [],
-          "category": "miscelanea",
-          "ambient_id": null,
-          "description": "Aula regular perteneciente al segundo nivel del nuevo pabellón de la facultad.",
-          "gallery": []
-      },
-      {
-          "name": "Laboratorio 01 del nuevo pabellon",
-          "tags": [],
-          "category": "laboratoio",
-          "ambient_id": null,
-          "description": "Laboratorio del nuevo pabellón regular, con espacio considerable pero con implementos limitados, usualmente las computadoras o las sillas se desabastecen para la cantidad de alumnos.",
-          "gallery": []
-      },
-      {
-          "name": "Laboratorio 02 del nuevo pabellon",
-          "tags": [],
-          "category": "laboratoio",
-          "ambient_id": null,
-          "description": "Laboratorio del nuevo pabellón regular, con espacio considerable pero con implementos limitados, usualmente las computadoras o las sillas se desabastecen para la cantidad de alumnos.",
-          "gallery": []
-      },
-      {
-          "name": "Laboratorio 03 del nuevo pabellon",
-          "tags": [],
-          "category": "laboratoio",
-          "ambient_id": null,
-          "description": "Laboratorio del nuevo pabellón regular, con espacio considerable pero con implementos limitados, usualmente las computadoras o las sillas se desabastecen para la cantidad de alumnos.",
-          "gallery": []
-      },
-      {
-          "name": "Laboratorio 04 del nuevo pabellon",
-          "tags": [],
-          "category": "laboratoio",
-          "ambient_id": null,
-          "description": "Laboratorio del nuevo pabellón regular, con espacio considerable pero con implementos limitados, usualmente las computadoras o las sillas se desabastecen para la cantidad de alumnos.",
-          "gallery": []
-      },
-      {
-          "name": "Laboratorio 05 del nuevo pabellon",
-          "tags": [],
-          "category": "laboratoio",
-          "ambient_id": null,
-          "description": "Laboratorio del nuevo pabellón regular, con espacio considerable pero con implementos limitados, usualmente las computadoras o las sillas se desabastecen para la cantidad de alumnos.",
-          "gallery": []
-      },
-     {
-          "name": "Laboratorio 06 nuevo pabellon",
-          "tags": [],
-          "category": "laboratoio",
-          "ambient_id": null,
-          "description": "Laboratorio del nuevo pabellón regular, con espacio considerable pero con implementos limitados, usualmente las computadoras o las sillas se desabastecen para la cantidad de alumnos.",
-          "gallery": []
-      },
-      {
-          "name": "Data Center",
-          "tags": [],
-          "category": "laboratoio",
-          "ambient_id": null,
-          "description": "El data center de la facultad, dirigido en presencial por miembros del departamento académico y el grupo de data science de la facultad. Por el momento no contiene una computadora de alto rendimiento como tal, sino que genera estados de mantenimiento como un mainframe. Usualmente está cerrado y tiene acceso público.",
-          "gallery": []
-      }
-]
+      "name": "Aula Magna",
+      "tags": [],
+      "category": "salones",
+      "ambient_id": 228,
+      "description": "Es uno de los salones mas grandes de la facultad, posee un proyector vertical, una gran cantidad de carpetas, una mesa de conferencias y una computadora móvil, lo que podría indicar que originalmente era usada como sala de conferencias. Hoy en día se usa como aula para secciones muy grandes.",
+      "gallery": []
+    },
+    {
+      "name": "Tercio Estudiantil",
+      "tags": [],
+      "category": "administrativo",
+      "ambient_id": 226,
+      "description": "Aula reservada para administrativos y miembros del tercio estudiantil, generalmente está cerrada y tiene poco aforo, sin embargo es un salón mas o menos espacioso.",
+      "gallery": []
+    },
+    {
+      "name": "Salón 200",
+      "tags": [],
+      "category": "salones",
+      "ambient_id": 217,
+      "description": "Aula regular perteneciente al segundo nivel del viejo pabellón de la facultad.",
+      "gallery": []
+    },
+    {
+      "name": "Salón 201",
+      "tags": [],
+      "category": "salones",
+      "ambient_id": 218,
+      "description": "Aula regular perteneciente al segundo nivel del viejo pabellón de la facultad.",
+      "gallery": []
+    },
+    {
+      "name": "Salón 202",
+      "tags": [],
+      "category": "salones",
+      "ambient_id": 219,
+      "description": "Aula regular perteneciente al segundo nivel del viejo pabellón de la facultad.",
+      "gallery": []
+    },
+    {
+      "name": "Salón 203",
+      "tags": [],
+      "category": "salones",
+      "ambient_id": 220,
+      "description": "Aula regular perteneciente al segundo nivel del viejo pabellón de la facultad.",
+      "gallery": []
+    },
+    {
+      "name": "Salón 204",
+      "tags": [],
+      "category": "laboratorio",
+      "ambient_id": 227,
+      "description": "Aula regular perteneciente al segundo nivel del viejo pabellón de la facultad.",
+      "gallery": []
+    },
+    {
+      "name": "Salón 206",
+      "tags": [],
+      "category": "laboratorio",
+      "ambient_id": 225,
+      "description": "Aula regular perteneciente al segundo nivel del viejo pabellón de la facultad.",
+      "gallery": []
+    },
+    {
+      "name": "Salón 207",
+      "tags": [],
+      "category": "salones",
+      "ambient_id": 224,
+      "description": "Aula regular perteneciente al segundo nivel del viejo pabellón de la facultad.",
+      "gallery": []
+    },
+    {
+      "name": "Salón 208",
+      "tags": [],
+      "category": "salones",
+      "ambient_id": 223,
+      "description": "Aula regular perteneciente al segundo nivel del viejo pabellón de la facultad.",
+      "gallery": []
+    },
+    {
+      "name": "Salón 209",
+      "tags": [],
+      "category": "laboratorio",
+      "ambient_id": 222,
+      "description": "Aula regular perteneciente al segundo nivel del viejo pabellón de la facultad.",
+      "gallery": []
+    },
+    {
+      "name": "Salón 210",
+      "tags": [],
+      "category": "laboratorio",
+      "ambient_id": 221,
+      "description": "Aula regular perteneciente al segundo nivel del viejo pabellón de la facultad.",
+      "gallery": []
+    },
+    {
+      "name": "Baño de segunda planta 1°",
+      "tags": [],
+      "category": "miscelanea",
+      "ambient_id": 214,
+      "description": "Los baños de la sgunda planta suelen estar menos populados que los del primer piso, además de ser bastante limpiosy generalmente tener papel disponible.",
+      "gallery": []
+    },
+    {
+      "name": "Comedor de la facultad",
+      "tags": [],
+      "category": "miscelanea",
+      "ambient_id": 213,
+      "description": "El comedor de la facultad tiene uno de los ambientes mas grandes de todos, es espacioso, tiene una entrada de luz bastante buena, tiene microondas de libre acceso de donde calentar tu comida y generalmente es bastante frecuentado. Tiene también mesas largas para comer. Sin embargo no venden comida, solo es un ambiente comunitario.",
+      "gallery": []
+    },
+    {
+      "name": "Salón 200 del nuevo pabellón",
+      "tags": [],
+      "category": "miscelanea",
+      "ambient_id": 212,
+      "description": "Aula regular perteneciente al segundo nivel del nuevo pabellón de la facultad.",
+      "gallery": []
+    },
+    {
+      "name": "Salón 201 del nuevo pabellón",
+      "tags": [],
+      "category": "miscelanea",
+      "ambient_id": 201,
+      "description": "Aula regular perteneciente al segundo nivel del nuevo pabellón de la facultad.",
+      "gallery": []
+    },
+    {
+      "name": "Salón 202 del nuevo pabellón",
+      "tags": [],
+      "category": "miscelanea",
+      "ambient_id": 202,
+      "description": "Aula regular perteneciente al segundo nivel del nuevo pabellón de la facultad.",
+      "gallery": []
+    },
+    {
+      "name": "Laboratorio 01",
+      "tags": [],
+      "category": "laboratorio",
+      "ambient_id": 210,
+      "description": "Laboratorios tecnológicos del nuevo pabellón. Cuentan con equipos dual boot para la realización de prácticas y talleres informáticos.",
+      "gallery": []
+    },
+    {
+      "name": "Laboratorio 02",
+      "tags": [],
+      "category": "laboratorio",
+      "ambient_id": 207,
+      "description": "Laboratorios tecnológicos del nuevo pabellón. Cuentan con equipos dual boot para la realización de prácticas y talleres informáticos.",
+      "gallery": []
+    },
+    {
+      "name": "Laboratorio 03",
+      "tags": [],
+      "category": "laboratorio",
+      "ambient_id": 206,
+      "description": "Laboratorios tecnológicos del nuevo pabellón. Cuentan con equipos dual boot para la realización de prácticas y talleres informáticos.",
+      "gallery": []
+    },
+    {
+      "name": "Laboratorio 04",
+      "tags": [],
+      "category": "laboratorio",
+      "ambient_id": 205,
+      "description": "Laboratorios tecnológicos del nuevo pabellón. Cuentan con equipos dual boot para la realización de prácticas y talleres informáticos.",
+      "gallery": []
+    },
+    {
+      "name": "Laboratorio 05 del nuevo pabellon",
+      "tags": [],
+      "category": "laboratorio",
+      "ambient_id": 204,
+      "description": "Laboratorios tecnológicos del nuevo pabellón. Cuentan con equipos dual boot para la realización de prácticas y talleres informáticos.",
+      "gallery": []
+    },
+    {
+      "name": "Laboratorio 06 nuevo pabellon",
+      "tags": [],
+      "category": "laboratorio",
+      "ambient_id": 203,
+      "description": "Laboratorios tecnológicos del nuevo pabellón. Cuentan con equipos dual boot para la realización de prácticas y talleres informáticos.",
+      "gallery": []
+    },
+    {
+      "name": "Data Center",
+      "tags": [],
+      "category": "miscelanea",
+      "ambient_id": 208,
+      "description": "El data center de la facultad, dirigido en presencial por miembros del departamento académico y el grupo de data science de la facultad. Por el momento no contiene una computadora de alto rendimiento como tal, sino que genera estados de mantenimiento como un mainframe. Usualmente está cerrado y tiene acceso público.",
+      "gallery": []
+    },
+    {
+      "name": "Sala de estudio",
+      "tags": [],
+      "category": "miscelanea",
+      "ambient_id": 211,
+      "description": "Sala de estudio dirigida a los alumnos fisianos. Aquí compañeros se reunen en un área tranquila con separadores de cabinas para estudiar en grupo o individualmente. Tiene acceso público.",
+      "gallery": []
+    },
+    {
+      "name": "Decanato",
+      "tags": [],
+      "category": "administrativo",
+      "ambient_id": 216,
+      "description": "Aula reservada para administrativos y miembros del tercio estudiantil, generalmente está cerrada y tiene poco aforo, sin embargo es un salón mas o menos espacioso.",
+      "gallery": []
+    },
+    {
+      "name": "Laboratorio segundo nivel",
+      "tags": [],
+      "category": "laboratorio",
+      "ambient_id": 216,
+      "description": "Laboratorio del segundo nivel, usualmente es usado para clases de física, tiene un espacio considerable y está ubicado al frente del aula Magna.",
+      "gallery": []
+    },
+    {
+      "name": "Escaleras",
+      "tags": [],
+      "category": "stairs",
+      "ambient_id": 234,
+      "description": "Escaleras del segundo piso, viejo pabellón. Conducen al primer y tercer piso",
+      "gallery": []
+    },
+    {
+      "name": "Escaleras",
+      "tags": [],
+      "category": "stairs",
+      "ambient_id": 233,
+      "description": "Escaleras del segundo piso, viejo pabellón. Conducen al primer y tercer piso",
+      "gallery": []
+    },
+    {
+      "name": "Escaleras",
+      "tags": [],
+      "category": "stairs",
+      "ambient_id": 230,
+      "description": "Escaleras del segundo piso, nuevo pabellón. Conducen al primer y tercer piso",
+      "gallery": []
+    },
+    {
+      "name": "Escaleras",
+      "tags": [],
+      "category": "stairs",
+      "ambient_id": 231,
+      "description": "Escaleras del segundo piso, nuevo pabellón. Conducen al primer y tercer piso",
+      "gallery": []
+    },
+    {
+      "name": "Escaleras",
+      "tags": [],
+      "category": "stairs",
+      "ambient_id": 237,
+      "description": "Escaleras que parten de los exteriores hasta el segundo pisos, nuevo pabellón.",
+      "gallery": []
+    },
+    {
+      "name": "Escaleras",
+      "tags": [],
+      "category": "stairs",
+      "ambient_id": 141,
+      "description": "Escaleras que parten de los exteriores hasta el segundo pisos, nuevo pabellón.",
+      "gallery": []
+    },
+    {
+      "name": "Escaleras",
+      "tags": [],
+      "category": "stairs",
+      "ambient_id": 139,
+      "description": "Escaleras que parten de los exteriores hasta el segundo pisos, nuevo pabellón.",
+      "gallery": []
+    },
+    {
+      "name": "Escaleras",
+      "tags": [],
+      "category": "stairs",
+      "ambient_id": 140,
+      "description": "Escaleras que parten de los exteriores hasta el segundo pisos, nuevo pabellón.",
+      "gallery": []
+    },
+    {
+      "name": "Salón de catedráticos",
+      "tags": [],
+      "category": "administrativo",
+      "ambient_id": 239,
+      "description": "Aula llena de computadoras y escritorios, usualmente es usada por catedráticos para trabajar o reunirse. Tiene acceso privado.",
+      "gallery": []
+    },
+    {
+      "name": "Escaleras",
+      "tags": [],
+      "category": "stairs",
+      "ambient_id": 232,
+      "description": "Escaleras del segundo piso, viejo pabellón. Conducen al primer y tercer piso",
+      "gallery": []
+    },
+    {
+      "name": "Baño del tercer piso",
+      "tags": [],
+      "category": "sshh",
+      "ambient_id": 312,
+      "description": "Los baños del tercer piso suelen estar menos populados que los del primer piso, además de ser bastante limpiosy generalmente tener papel disponible.",
+      "gallery": []
+    },
+    {
+      "name": "Baño del tercer piso",
+      "tags": [],
+      "category": "sshh",
+      "ambient_id": 335,
+      "description": "Los baños del tercer piso suelen estar menos populados que los del primer piso, además de ser bastante limpiosy generalmente tener papel disponible.",
+      "gallery": []
+    },
+    {
+      "name": "Baño del tercer piso",
+      "tags": [],
+      "category": "sshh",
+      "ambient_id": 308,
+      "description": "Los baños del tercer piso suelen estar menos populados que los del primer piso, además de ser bastante limpiosy generalmente tener papel disponible.",
+      "gallery": []
+    },
+    {
+      "name": "Unidad de Posgrado",
+      "tags": [],
+      "category": "miscelanea",
+      "ambient_id": 311,
+      "description": "La unidad de posgrado es un área de la facultad destinada a la investigación y a la enseñanza de posgrado. Tiene acceso público.",
+      "gallery": []
+    },
+    {
+      "name": "Ambiente administrativo",
+      "tags": [],
+      "category": "administrativo",
+      "ambient_id": 310,
+      "description": "Ambiente administrativo, usualmente es usado por administrativos y miembros del tercio estudiantil. Tiene acceso privado.",
+      "gallery": []
+    },
+    {
+      "name": "Salón de música",
+      "tags": [],
+      "category": "miscelanea",
+      "ambient_id": 301,
+      "description": "El salón de Música de la facultad es un espacio destinado a las prácticas del elenco de la facultad. Tiene acceso público.",
+      "gallery": []
+    },
+    {
+      "name": "Salón 300",
+      "tags": [],
+      "category": "salones",
+      "ambient_id": 319,
+      "description": "Aula regular perteneciente al tercer nivel del viejo pabellón de la facultad.",
+      "gallery": []
+    },
+    {
+      "name": "Salón 301",
+      "tags": [],
+      "category": "salones",
+      "ambient_id": 320,
+      "description": "Aula regular perteneciente al tercer nivel del viejo pabellón de la facultad.",
+      "gallery": []
+    },
+    {
+      "name": "Salón 302",
+      "tags": [],
+      "category": "salones",
+      "ambient_id": 321,
+      "description": "Aula regular perteneciente al tercer nivel del viejo pabellón de la facultad.",
+      "gallery": []
+    },
+    {
+      "name": "Salón 303",
+      "tags": [],
+      "category": "salones",
+      "ambient_id": 322,
+      "description": "Aula regular perteneciente al tercer nivel del viejo pabellón de la facultad.",
+      "gallery": []
+    },
+    {
+      "name": "Salón 304",
+      "tags": [],
+      "category": "salones",
+      "ambient_id": 323,
+      "description": "Aula regular perteneciente al tercer nivel del viejo pabellón de la facultad.",
+      "gallery": []
+    },
+    {
+      "name": "Salón 305",
+      "tags": [],
+      "category": "salones",
+      "ambient_id": 325,
+      "description": "Aula regular perteneciente al tercer nivel del viejo pabellón de la facultad.",
+      "gallery": []
+    },
+    {
+      "name": "Salón 306",
+      "tags": [],
+      "category": "salones",
+      "ambient_id": 324,
+      "description": "Aula regular perteneciente al tercer nivel del viejo pabellón de la facultad.",
+      "gallery": []
+    },
+    {
+      "name": "Salón 307",
+      "tags": [],
+      "category": "salones",
+      "ambient_id": 318,
+      "description": "Aula regular perteneciente al tercer nivel del viejo pabellón de la facultad.",
+      "gallery": []
+    },
+    {
+      "name": "Salón 308",
+      "tags": [],
+      "category": "salones",
+      "ambient_id": 317,
+      "description": "Aula regular perteneciente al tercer nivel del viejo pabellón de la facultad.",
+      "gallery": []
+    },
+    {
+      "name": "Salón 309",
+      "tags": [],
+      "category": "salones",
+      "ambient_id": 316,
+      "description": "Aula regular perteneciente al tercer nivel del viejo pabellón de la facultad.",
+      "gallery": []
+    },
+    {
+      "name": "Salón 310",
+      "tags": [],
+      "category": "salones",
+      "ambient_id": 315,
+      "description": "Aula regular perteneciente al tercer nivel del viejo pabellón de la facultad.",
+      "gallery": []
+    },
+    {
+      "name": "Salón 311",
+      "tags": [],
+      "category": "salones",
+      "ambient_id": 326,
+      "description": "Aula regular perteneciente al tercer nivel del viejo pabellón de la facultad.",
+      "gallery": []
+    },
+    {
+      "name": "Salón 312",
+      "tags": [],
+      "category": "salones",
+      "ambient_id": 327,
+      "description": "Aula regular perteneciente al tercer nivel del viejo pabellón de la facultad.",
+      "gallery": []
+    },
+    {
+      "name": "Laboratorio 04",
+      "tags": [],
+      "category": "laboratorio",
+      "ambient_id": 302,
+      "description": "Laboratorios tecnológicos del nuevo pabellón. Cuentan con equipos dual boot para la realización de prácticas y talleres informáticos.",
+      "gallery": []
+    },
+    {
+      "name": "Laboratorio 06",
+      "tags": [],
+      "category": "laboratorio",
+      "ambient_id": 303,
+      "description": "Laboratorios tecnológicos del nuevo pabellón. Cuentan con equipos dual boot para la realización de prácticas y talleres informáticos.",
+      "gallery": []
+    },
+    {
+      "name": "Laboratorio 07",
+      "tags": [],
+      "category": "laboratorio",
+      "ambient_id": 304,
+      "description": "Laboratorios tecnológicos del nuevo pabellón. Cuentan con equipos dual boot para la realización de prácticas y talleres informáticos.",
+      "gallery": []
+    },
+    {
+      "name": "Laboratorio 08",
+      "tags": [],
+      "category": "laboratorio",
+      "ambient_id": 305,
+      "description": "Laboratorios tecnológicos del nuevo pabellón. Cuentan con equipos dual boot para la realización de prácticas y talleres informáticos.",
+      "gallery": []
+    },
+    {
+      "name": "Laboratorio 03",
+      "tags": [],
+      "category": "laboratorio",
+      "ambient_id": 306,
+      "description": "Laboratorios tecnológicos del nuevo pabellón. Cuentan con equipos dual boot para la realización de prácticas y talleres informáticos.",
+      "gallery": []
+    },
+    {
+      "name": "Laboratorio 02",
+      "tags": [],
+      "category": "laboratorio",
+      "ambient_id": 307,
+      "description": "Laboratorios tecnológicos del nuevo pabellón. Cuentan con equipos dual boot para la realización de prácticas y talleres informáticos.",
+      "gallery": []
+    },
+    {
+      "name": "Laboratorio misterioso",
+      "tags": [],
+      "category": "laboratorio",
+      "ambient_id": 309,
+      "description": "Un laboratorio cuyo nombre no pudimos ubicar. Misterioso.",
+      "gallery": []
+    },
+    {
+      "name": "Escaleras",
+      "tags": [],
+      "category": "stairs",
+      "ambient_id": 328,
+      "description": "Escaleras del tercer piso, viejo pabellón. Conducen al segundo piso y al techo de la facultad.",
+      "gallery": []
+    },
+    {
+      "name": "Escaleras",
+      "tags": [],
+      "category": "stairs",
+      "ambient_id": 329,
+      "description": "Escaleras del tercer piso, viejo pabellón. Conducen al segundo piso y al techo de la facultad.",
+      "gallery": []
+    },
+    {
+      "name": "Escaleras",
+      "tags": [],
+      "category": "stairs",
+      "ambient_id": 331,
+      "description": "Escaleras del tercer piso, nuevo pabellón. Conducen al segundo piso y al techo de la facultad.",
+      "gallery": []
+    },
+    {
+      "name": "Escaleras",
+      "tags": [],
+      "category": "stairs",
+      "ambient_id": 332,
+      "description": "Escaleras del tercer piso, nuevo pabellón. Conducen al segundo piso y al techo de la facultad.",
+      "gallery": []
+    },
+    {
+      "name": "Escaleras",
+      "tags": [],
+      "category": "stairs",
+      "ambient_id": 330,
+      "description": "Escaleras que parten de los exteriores hasta el segundo pisos, nuevo pabellón.",
+      "gallery": []
+    },
+    {
+      "name": "Salón de catedráticos",
+      "tags": [],
+      "category": "administrativo",
+      "ambient_id": 336,
+      "description": "Aula llena de computadoras y escritorios, usualmente es usada por catedráticos para trabajar o reunirse. Tiene acceso privado.",
+      "gallery": []
+    },
+    {
+      "name": "Matrícula",
+      "tags": [],
+      "category": "administrativo",
+      "ambient_id": 313,
+      "description": "Oficina de matrícula, donde se realizan los trámites de inscripción de cursos. Los estudiantes también pueden solicitar certificaciones de notas y otros documentos.",
+      "gallery": []
+    },
+    {
+      "name": "Dirección de Escuela de Software",
+      "tags": [],
+      "category": "administrativo",
+      "ambient_id": 333,
+      "description": "La dirección de la E.P. de Ingeniería en Software, donde se realizan trámites administrativos y se atiende a los estudiantes.",
+      "gallery": []
+    },
+    {
+      "name": "Dirección de Escuela de Sistemas",
+      "tags": [],
+      "category": "administrativo",
+      "ambient_id": 334,
+      "description": "La dirección de la E.P. de Ingeniería en Sistemas, donde se realizan trámites administrativos y se atiende a los estudiantes.",
+      "gallery": []
+    },
+    {
+      "name": "UNAYOE y Bienestar",
+      "tags": [],
+      "category": "administrativo",
+      "ambient_id": 314,
+      "description": "La Unidad de Asesoría y Orientación al Estudiante, es la unidad organica encargada de brindar asesoramiento y orientación a los estudiantes de la Facultad en las actividades académicas para el éxito de su formación profesional. Igualmente brinda el servicio de detección y tratamiento de problemas psicopedagógicos, realizando el seguimiento de su rendimiento. Brinda a los estudiantes charlas y/o talleres que refuercen sus habilidades y competencias personales y académicas. Brindar atención a estudiantes que presentan dificultades en su aprendizaje.",
+      "gallery": []
+    },
+    {
+      "name": "Aula administrativa",
+      "tags": [],
+      "category": "administrativo",
+      "ambient_id": 215,
+      "description": "Espacio administrativo reservado para el acceso privado",
+      "gallery": []
+    },
+    {
+      "name": "Espacio administrativo",
+      "tags": [],
+      "category": "administrativo",
+      "ambient_id": 235,
+      "description": "Espacio administrativo reservado para el acceso privado",
+      "gallery": []
+    },
+    {
+      "name": "Baños de administración",
+      "tags": [],
+      "category": "sshh",
+      "ambient_id": 236,
+      "description": "Baños de administración. No se encuentran abiertos al público estudiantil.",
+      "gallery": []
+    }
+  ]

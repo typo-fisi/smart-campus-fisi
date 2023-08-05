@@ -37,6 +37,12 @@ export class FisiMap extends mapboxgl.Map {
    * @type {Array<Object>}
    * */
   ambientsData = [];
+  /**
+   * Cached assignments data
+   *
+   * @type {Array<Object>}
+   */
+  assignmentsData = [];
 
   /**
    * This contains the list of LayerGroup[] loaded by this.loadFloorLevels
@@ -44,11 +50,15 @@ export class FisiMap extends mapboxgl.Map {
    * */
   floorsLayerGroups = [];
 
+  /** @type {LayerGroup} */
+  currentFloor = null;
+
   categoryToColorMap = new Map([
     ['aula', '#8a8bbf'],
     ['laboratorio', '#b0a182'],
     ['sshh', '#8ababf'],
-    ['administrativo', '#ba998d']
+    ['administrativo', '#ba998d'],
+    ['stairs', '#ca8b8b'],
   ]);
 
   constructor(containerId) {
@@ -138,6 +148,17 @@ export class FisiMap extends mapboxgl.Map {
     return new Promise((resolve) => {
       this.on('load', resolve);
     });
+  }
+
+  async loadAssignmentsToMemory() {
+    try {
+      const assignmentsResponse = await fetch(`${import.meta.env.VITE_AMBIENTS_API_URL}/api/assignments/`);
+      // const assignmentsResponse = await fetch('./assignments.json');
+      this.assignmentsData = await assignmentsResponse.json();
+    } catch (e) {
+      console.error('Could not fetch assignments data!!', e);
+      window.alert('No se pudo cargar la información de las asignaciones. Por favor, recargue la página');
+    }
   }
 
   /**
@@ -295,7 +316,7 @@ export class FisiMap extends mapboxgl.Map {
         type: 'symbol',
         layout: {
           // Hide text labels for zoom levels below 17.
-          'text-field': ['get', 'ambient_id'],
+          'text-field': ['get', 'name'],
           'text-variable-anchor': ['center'],
           'text-radial-offset': 0.5,
           'text-justify': 'auto',
@@ -326,6 +347,7 @@ export class FisiMap extends mapboxgl.Map {
       button.dataset.groupToToggle = floorGroup.groupID;
       if ((i + 1) === this.initialVisibleFloor) {
         button.classList.add('active');
+        this.currentFloor = floorGroup;
       }
       return button;
     });
@@ -354,12 +376,6 @@ export class FisiMap extends mapboxgl.Map {
     const feature = e.features[0];
     const ambient = this.ambientsData.find((ambient) => ambient.ambient_id === feature.id);
 
-    // little popup, the information should be available in the ambientsData Properties
-    new mapboxgl.Popup()
-      .setLngLat(e.lngLat)
-      .setHTML(`<h3>${ambient.description}</h3>`)
-      .addTo(this);
-
     this.flyTo({
       center: e.lngLat,
       zoom: 20,
@@ -375,11 +391,108 @@ export class FisiMap extends mapboxgl.Map {
 
     const sidepanel = document.getElementById('sidepanel');
     sidepanel.classList.remove('hidden');
+
+    if (ambient.category === "salones" || ambient.category === "aulas") {
+      // cuando es un salón, buscamos en todos los assignments los cursos que se dictan ahí
+      const gruposQueDictan = [];
+      this.assignmentsData.filter((assignment) => {
+        assignment.groups.forEach((group) => {
+          if (group.ambient_id === ambient.ambient_id) {
+            group.course = assignment.name;
+            gruposQueDictan.push(group);
+          }
+        });
+      });
+
+      if (gruposQueDictan.length === 0) {
+        // delelete information about groups
+        const groups = information.getElementsByClassName('groups-container')[0];
+        groups.innerHTML = '';
+        return;
+      }
+
+      const formatGroup = (group) => {
+        console.log({ group })
+        return `
+          <div class="group">
+            <h5>${group.course}</h5>
+            <p>${group.professor.Name}</p>
+            <p>${group.enrolled} estudiantes</p>
+            <p>${group.schedules.map((schedule) => {
+              const dayMap = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'][schedule.day]
+              const formatearHora = (hora) => {
+                const horaString = hora.toString();
+                const horaFormateada = `${horaString.slice(0, -2)}:${horaString.slice(-2)}`;
+                return horaFormateada;
+              }
+              return `${dayMap} de ${formatearHora(schedule.from)} a ${formatearHora(schedule.to)}`
+            }).join(', ')}</p>
+          </div>
+        `;
+      }
+
+      const groupsContainer = document.createElement('div');
+      groupsContainer.classList.add('groups-container');
+      const title = document.createElement('h4');
+      title.classList.add('title');
+      title.textContent = 'Grupos que dictan';
+
+      groupsContainer.appendChild(title);
+
+      gruposQueDictan.forEach((group) => {
+        groupsContainer.innerHTML += formatGroup(group);
+      });
+
+      const groups = information.getElementsByClassName('groups-container')[0];
+      groups.replaceWith(groupsContainer);
+    }
   }
 
   setupCat() {
     new DraggableCat({
       map: this
     });
+  }
+
+
+  flyToAmbient(ambientId) {
+    let foundFeatures = null;
+    let floorGroupIdToFly = '';
+    this.floorsLayerGroups.forEach((layerGroup) => {
+      const layer = layerGroup.getLayerIdByType('fill');
+      const query = this.queryRenderedFeatures({
+        layers: [layer],
+        filter: ['==', 'ambient_id', ambientId]
+      });
+      if (query.length > 0) {
+        foundFeatures = query;
+        floorGroupIdToFly = layerGroup.groupID
+      }
+    });
+
+    if (!foundFeatures) {
+      console.error('Ambient not found');
+      return;
+    }
+
+    let foundFeature = foundFeatures[0];
+
+    this.floorsLayerGroups.forEach((floorGroup) => {
+      floorGroup.setIsVisible(floorGroup.groupID === floorGroupIdToFly);
+    });
+
+    console.log({foundFeature})
+    console.log('floorToFly', foundFeature.geometry.coordinates[0]);
+
+    this.flyTo({
+      center: {
+        lng: foundFeature.geometry.coordinates[0][1][0],
+        lat: foundFeature.geometry.coordinates[0][1][1]
+      },
+      zoom: 20,
+      offset: [0, 0]
+    });
+
+    document.getElementById('search-results').inerHTML = '';
   }
 }

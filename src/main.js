@@ -1,5 +1,6 @@
 import mapboxgl from 'mapbox-gl';
 import { FisiMap } from './FisiMap';
+import { SearchBar } from './SearchBar';
 
 import 'mapbox-gl/dist/mapbox-gl.css';
 import './styles/globals.scss';
@@ -12,10 +13,16 @@ const map = new FisiMap('fisimap');
 map.setupCat();
 const ready = Promise.all([
   map.waitForMapLoaded(),
-  map.loadGeoJSONDataToMemory()
+  map.loadGeoJSONDataToMemory(),
+  map.loadAssignmentsToMemory()
 ]);
 
 ready.then(() => {
+  new SearchBar({
+    ambientsData: map.ambientsData,
+    assignmentsData: map.assignmentsData,
+    map: map
+  });
   // Covers the whole Fisi terrain
   const FISI_TERRAIN_COVER_LAYER = 'fisiBaseTerrain';
   map.addLayer({

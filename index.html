@@ -21,14 +21,18 @@
       </figure>
     </header>
     <main>
-      <section id="searchbar">
-        <button id="toggle-panel-btn">
-          <img width="25px" src="/toggle_menu_icon.png" />
-        </button>
-        <input type="search" placeholder="Buscar" />
-        <button id="search-btn">
-          <img width="25px" src="/search_icon.png" />
-        </button>
+      <section id="searchbox">
+        <div id="searchbar">
+          <button id="toggle-panel-btn">
+            <img width="25px" src="/toggle_menu_icon.png" />
+          </button>
+          <input id="search-input" type="search" placeholder="Buscar" />
+          <button id="search-btn">
+            <img width="25px" src="/search_icon.png" />
+          </button>
+        </div>
+        <div id="search-results">
+        </div>
       </section>
       <section id="directionbar">
         <input type="text" placeholder="Origen" id="origin" />
@@ -49,12 +53,16 @@
       </section>
       <aside id="sidepanel" class="hidden">
         <section id="searchbar-spacing"></section>
-        <img src="https://portal.andina.pe/EDPfotografia3/Thumbnail/2023/05/05/000955452W.jpg" />
+        <img src="./ambients-imgs/fisi_front.jpg" />
         <section id="sidepanel-information">
-          <h4>Comedor de la facultad</h4>
+          <h4>Facultad de Ingeniería de Sistemas e Informática</h4>
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatem. Quisquam, voluptatem. Quisquam, voluptatem. Quisquam, voluptatem.
+            Bienvenido al mapa del <strong>Smart Campus</strong> FISI.<br><br>
+            Aquí podrás encontrar todo tipo de información sobre la facultad.<br><br>
+            Si deseas buscar un <strong>ambiente</strong>, <strong>clase</strong> o <strong>curso</strong> en particular, puedes hacerlo en la barra de búsqueda.<br><br>
+            Puedes utilizar a <strong>Tesla</strong>, la gata de la facultad, para navegar por el mapa en 360°.<br><br>
           </p>
+          <div class="groups-container"></div>
         </section>
       </aside>
     </main>
