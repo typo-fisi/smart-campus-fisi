@@ -58,8 +58,77 @@ ready.then(() => {
   });
 });
 
+async function getRoute(start, end) {
+  // make a directions request using cycling profile
+  // an arbitrary start will always be the same
+  // only the end or destination will change
+  const query = await fetch(
+    `https://api.mapbox.com/directions/v5/mapbox/walking/${start[0]},${start[1]};${end[0]},${end[1]}?alternatives=false&annotations=distance%2Cduration&geometries=geojson&overview=full&steps=false&access_token=${mapboxgl.accessToken}`,
+    { method: 'GET' }
+  );
+  const json = await query.json();
+  const data = json.routes[0];
+  const geojson = {
+    type: 'Feature',
+    properties: {},
+    geometry: {
+      type: 'LineString',
+      coordinates: data.geometry.coordinates
+    }
+  };
+  // if the route already exists on the map, we'll reset it using setData
+  if (map.getSource('route')) {
+    map.getSource('route').setData(geojson);
+  }
+  // otherwise, we'll make a new request
+  else {
+    map.addLayer({
+      id: 'route',
+      type: 'line',
+      source: {
+        type: 'geojson',
+        data: geojson
+      },
+      layout: {
+        'line-join': 'round',
+        'line-cap': 'round'
+      },
+      paint: {
+        'line-color': '#3887be',
+        'line-width': 5,
+        'line-opacity': 0.75
+      }
+    });
+  }
+}
+
+const startPoint = [-77.08574712198498,-12.053605418051205]
+document.getElementById('origin').value = "FISI";
+
+document.getElementById('destination').addEventListener('click', (e) => {
+  let destinationSet = false;
+  map.on('click' , (e) => {
+    if (!destinationSet) {
+      const coords = Object.keys(e.lngLat).map((key) => e.lngLat[key]);
+      destinationSet = true;
+      getRoute(startPoint, coords);
+      document.getElementById('delete-route-btn').classList.remove('hidden');
+    }
+  });
+});
+
+// the delete-route-btn button is hidden by default
+// it's shown when a route is returned from the API
+document.getElementById('delete-route-btn').addEventListener('click', (e) => {
+  map.removeLayer('route');
+  map.removeSource('route');
+  document.getElementById('delete-route-btn').classList.add('hidden');
+});
+
+
 /** No map related handlers goes here */
 document.getElementById('toggle-panel-btn').addEventListener('click', (e) => {
   const sidepanel = document.getElementById('sidepanel');
   sidepanel.classList.toggle('hidden');
 });
+

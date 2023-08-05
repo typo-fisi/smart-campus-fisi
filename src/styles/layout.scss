@@ -133,6 +133,55 @@ main {
     }
   }
 
+  #directionbar {
+    position: absolute;
+    z-index: 6969696969;
+
+    bottom: 40px;
+    left: 10px;
+
+    // set width to be responsive
+    width: calc(50vw - 20px - var(--sidepanel-width));
+
+    input {
+      border: none;
+      outline: none;
+      background-color: transparent;
+      width: 100%;
+      height: 100%;
+      background-color: #f2f5f9;
+      padding: 5px;
+      padding-left: 10px;
+
+      &::placeholder {
+        font-size: 14px;
+      }
+      text-align: center;
+    }
+
+    #destination {
+      border: 1px solid #b9b9b9;
+      border-radius: 3px;
+      padding: 5px;
+      padding-left: 10px;
+      width: 100%;
+      height: 40px;
+      background-color: #f2f5f9;
+    }
+
+    #delete-route-btn {
+      border: none;
+      outline: none;
+      background-color: transparent;
+      width: 40px;
+      height: 40px;
+      background-color: #f2f5f9;
+      padding: 5px;
+      border-radius: 3px;
+      border: 1px solid #b9b9b9;
+    }
+  }
+
   #fisimap {
     height: calc(100vh - var(--header-height));
     // display: none;
@@ -222,4 +271,8 @@ main {
   width: 40px;
   opacity: 0.8;
   filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(73deg) brightness(103%) contrast(103%);
+}
+
+.hidden {
+  display: none;
 }
