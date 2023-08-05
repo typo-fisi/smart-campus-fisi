@@ -137,11 +137,17 @@ main {
     position: absolute;
     z-index: 6969696969;
 
-    bottom: 40px;
+    bottom: 20px;
     left: 10px;
 
     // set width to be responsive
     width: calc(50vw - 20px - var(--sidepanel-width));
+    max-width: 200px;
+
+    #origin {
+      background-color: #49494b;
+      color: #fff;
+    }
 
     input {
       border: none;
@@ -179,6 +185,12 @@ main {
       padding: 5px;
       border-radius: 3px;
       border: 1px solid #b9b9b9;
+    }
+  }
+  // this hide direction bar on mobiles resolutions
+  @media only screen and (max-width: 768px) {
+    #directionbar {
+      display: none;
     }
   }
 

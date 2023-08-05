@@ -4,7 +4,7 @@ import { DraggableCat } from './DraggableCat';
 
 export class FisiMap extends mapboxgl.Map {
   static INITIAL_MAP_ZOOM = 18;
-  static MAP_MAX_ZOOM = 20;
+  static MAP_MAX_ZOOM = 22;
   static FISI_COORDINATES = [-77.0854458, -12.0530102];
   static MAP_BOUNDS = [
     [-77.10696407267761, -12.073808103180393], // SW (suroeste)
@@ -67,8 +67,9 @@ export class FisiMap extends mapboxgl.Map {
       container: containerId, // container ID
       // styles API: https://docs.mapbox.com/api/maps/styles/
       // styles gallery: https://www.mapbox.com/gallery
-      style: 'mapbox://styles/paoloose/clku5av4d001501p4agbi6cbo?optimize=true',
+      // style: 'mapbox://styles/paoloose/clku5av4d001501p4agbi6cbo?optimize=true',
       // style: 'mapbox://styles/mapbox/satellite-streets-v12?optimize=true', // (satelital)
+      style: 'mapbox://styles/mapbox/streets-v12?optimize=true', // (satelital)
       zoom: FisiMap.INITIAL_MAP_ZOOM, // starting zoom
       maxZoom: FisiMap.MAP_MAX_ZOOM,
       center: FisiMap.FISI_COORDINATES,

@@ -48,13 +48,24 @@ ready.then(() => {
 
   map.loadFloorLevels();
 
+  const FISI_GREEN_AREA_LAYER = 'fisiGreenArea';
+  map.addLayer({
+    id: FISI_GREEN_AREA_LAYER,
+    source: 'fisi_green.geo.json',
+    type: 'fill',
+    paint: {
+      'fill-color': '#c5d6a2',
+      'fill-opacity': 0.8
+    }
+  });
+
   const FISI_VR_POINTS = 'fisiVRPoints';
   map.addLayer({
     id: FISI_VR_POINTS,
     source: '360_interactive_points.geo.json',
     type: 'circle',
     paint: {
-      'circle-color': '#3f5c9e',
+      'circle-color': '#000',
       'circle-radius': 5,
       'circle-blur': 0.5,
       'circle-opacity': 0.5
