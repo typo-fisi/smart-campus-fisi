@@ -190,7 +190,7 @@ main {
   // this hide direction bar on mobiles resolutions
   @media only screen and (max-width: 768px) {
     #directionbar {
-      display: none;
+      width: 69px;
     }
   }
 

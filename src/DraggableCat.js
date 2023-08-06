@@ -145,13 +145,15 @@ export class DraggableCat {
   }
 
   async show360Viewer(image_id) {
+    // Hide UI elements
+    document.getElementById('app-header').style.display = 'none';
+    document.getElementById('directionbar').style.display = 'none';
     document.getElementById('fisimap').style.display = 'none';
     const view = document.getElementById('sphere-viewer');
     const canvas = document.createElement('canvas');
     view.style.display = 'block';
     canvas.classList.add('view360-canvas');
     view.appendChild(canvas);
-    document.getElementById('app-header').style.display = 'none';
     this.is360ViewerActive = true;
     try {
       // view.requestFullscreen();
@@ -183,9 +185,10 @@ export class DraggableCat {
 
   close360Viewer() {
     if (!this.is360ViewerActive) return;
-    document.getElementById('fisimap').style.display = 'block';
     document.getElementById('sphere-viewer').style.display = 'none';
     document.getElementById('app-header').style.display = 'block';
+    document.getElementById('directionbar').style.display = 'block';
+    document.getElementById('fisimap').style.display = 'block';
     document.querySelector('.view360-canvas').remove();
     this.is360ViewerActive = false;
     // document.exitFullscreen();
