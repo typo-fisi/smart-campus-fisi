@@ -140,7 +140,8 @@ export class DraggableCat {
       return prev;
     }, { distance: Infinity });
 
-    console.log('showing fullscreen')
+    console.log({nearestPoint})
+    if (nearestPoint.distance > 0.0107109) return;
     this.show360Viewer(nearestPoint.image_id);
   }
 
